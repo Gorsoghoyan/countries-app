@@ -1,7 +1,4 @@
 @import "../../sass/variables.module.scss";
-body {
-    height: 10091px;
-}
 
 .sideBar {
     width: 220px;
@@ -9,9 +6,30 @@ body {
     top: 0;
     left: 0;
     bottom: 0;
-    overflow: auto;
+    overflow: hidden;
     background: $--app-sidebar-bg;
     margin-top: $--app-header-height;
+    transition: all 0.5s ease;
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        // background: #f1f1f1; 
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #888; 
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+    }
+    &:hover {
+        overflow: auto;
+        .sideBar::-webkit-scrollbar-track {
+            // background: #f1f1f1; 
+            background: wheat;
+        }
+    }
 
     .topContainer {
         position: relative;
@@ -21,7 +39,7 @@ body {
         background-size: cover;
         color: $--app-theme2;
         padding: 20px;
-        font-size: 20px;
+        font-size: 16px;
         z-index: -2;
         cursor: pointer;
         &::before {
@@ -52,6 +70,46 @@ body {
                 margin-bottom: 20px;
             }
         }
+    }
 
+    .navigationContainer {
+        
+        h3 {
+            color: $--app-sidebar-menu-header-color;
+            font-family: $--bs-font-monospace;
+            padding: 15px 20px 10px 20px;
+            line-height: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .navItem {
+            padding: 10px 20px;
+            line-height: 20px;
+            display: block;
+            text-decoration: none;
+            color: $--app-sidebar-component-color-rgb;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            &:hover {
+                color: $--app-theme2;
+            }
+            
+            &.active {
+                background-color: $--app-theme1;
+                background-image: $--bs-gradient;
+                color: $--app-theme2;
+
+                svg {
+                    color: $--app-sidebar-component-active-color;
+                }
+            }
+
+            svg {
+                font-size: 18px;
+                margin-right: 7px;
+            }
+        }
     }
 }

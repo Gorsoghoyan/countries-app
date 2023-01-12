@@ -7,6 +7,22 @@ $--app-theme2: #FFFFFF;
 $--app-sidebar-bg: #2d353c;
 $--app-sidebar-profile-bg: rgba(32,37,42,.75);
 $--app-sidebar-profile-bg-hover: rgba(32, 37, 42, 0.499);
+$--app-sidebar-menu-header-color: rgba(255, 255, 255, 0.45);
+$--app-sidebar-component-color-rgb: rgb(255,255,255,.6);
+$--app-sidebar-component-active-color: #3b3f44;
+$--bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 
 // Header
 $--app-header-height: 50px;
+
+// body 
+$--bs-body-font-family: Open Sans,sans-serif;
+$--bs-body-font-size: 0.75rem;
+$--bs-body-font-weight: 400;
+$--bs-body-line-height: 1.5;
+$--bs-body-color: #dee2e6;
+$--bs-body-bg: #161a1d;
+
+// fonts 
+$--bs-font-sans-serif: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+$--bs-font-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;

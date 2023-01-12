@@ -1,5 +1,16 @@
+@import "./sass/variables.module.scss";
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    font-family: $--bs-body-font-family;
+    color: $--bs-body-color;
+    background: $--bs-body-bg;
+    font-size: $--bs-body-font-size;
+    font-weight: $--bs-body-font-weight;
+    line-height: $--bs-body-line-height;
 }
