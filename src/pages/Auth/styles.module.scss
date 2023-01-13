@@ -1,0 +1,47 @@
+@import "../../sass/variables.module.scss";
+
+.auth {
+    display: flex;
+    min-height: 100vh;
+
+    .leftPart {
+        width: calc(100% - 500px);
+        overflow: hidden;
+        padding: 40px 30px;
+        display: flex;
+        align-items: flex-end;
+            // background-size: cover;
+            // background-repeat: no-repeat;
+
+        h2 {
+            color: $--app-theme2;
+
+            span {
+
+            }
+        }
+    }
+
+    .rightPart {
+        width: 500px;
+        background: $--app-component-bg;
+    }
+}
+
+@media screen and (max-width: 991.98px) {
+    .auth {
+
+        .rightPart {
+            width: 400px;
+        }
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+    .auth {
+
+        .rightPart {
+            width: auto
+        }
+    }
+}

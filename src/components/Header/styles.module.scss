@@ -1,0 +1,83 @@
+@import "../../sass/variables.module.scss";
+
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: $--app-header-height;
+    background: $--app-header-bg;
+    color: $--app-header-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+
+    .logoPart {
+        display: flex;
+        align-items: center;
+
+        svg {
+            font-size: 28px;
+            color: $--app-theme1;
+            margin-right: 10px;
+        }
+
+        h1 {
+            font-size: 20px;
+
+            span {
+                color: $--app-header-logo-silver-color;
+                font-weight: 100;
+            }
+        }
+    }
+
+    .rightPart {
+
+        .searchBlock {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: $--app-header-input-bg;
+            border: $--app-header-input-border;
+            min-width: 220px;
+            height: 32px;
+            border-radius: 30px;
+            overflow: hidden;
+
+            .input {
+                background: transparent;
+                outline: none;
+                border: none;
+                width: 100%;
+                height: 100%;
+                padding-left: 15px;
+                transition: padding-right 0.1s ease-in;
+                color: $--app-theme2;
+                &::placeholder {
+                    color: $--app-header-input-plc-color;
+                    font-weight: bold;
+                }
+                &:focus {
+                    padding-right: 80px;
+                }
+            }
+
+            .iconBlock {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $--bs-btn-color;
+                font-size: 18px;
+                cursor: pointer;
+                transition: color 0.1s ease;
+                padding: 0 10px;
+                &:hover {
+                    color: $--app-theme2;
+                }
+            }
+        }
+    }
+}

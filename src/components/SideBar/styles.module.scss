@@ -6,34 +6,20 @@
     top: 0;
     left: 0;
     bottom: 0;
-    overflow: hidden;
+    overflow: auto;
     background: $--app-sidebar-bg;
     margin-top: $--app-header-height;
-    transition: all 0.5s ease;
     &::-webkit-scrollbar {
-        width: 10px;
-    }
-    &::-webkit-scrollbar-track {
-        // background: #f1f1f1; 
-        background: transparent;
+        width: 6px;
     }
     &::-webkit-scrollbar-thumb {
-        background: #888; 
-    }
-    &::-webkit-scrollbar-thumb:hover {
-        background: #555; 
-    }
-    &:hover {
-        overflow: auto;
-        .sideBar::-webkit-scrollbar-track {
-            // background: #f1f1f1; 
-            background: wheat;
-        }
+        background-color: #adb5bd;
+        border-radius: 10px;
     }
 
     .topContainer {
         position: relative;
-        background: url(../../images/cover-sidebar-user.jpg);
+        background: url(../../images/cover-sidebar1.jpg);
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -65,7 +51,7 @@
             .profilePhoto {
                 width: 35px;
                 height: 35px;
-                background: url(../../images/cover-sidebar-user.jpg);
+                background: url(../../images/cover-sidebar1.jpg);
                 border-radius: 50%;
                 margin-bottom: 20px;
             }
@@ -84,12 +70,12 @@
         }
 
         .navItem {
-            padding: 10px 20px;
+            padding: 15px 20px;
             line-height: 20px;
             display: block;
             text-decoration: none;
             color: $--app-sidebar-component-color-rgb;
-            font-size: 13px;
+            font-size: 15px;
             display: flex;
             align-items: center;
             &:hover {

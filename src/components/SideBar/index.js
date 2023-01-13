@@ -1,17 +1,11 @@
 import { navigationsConfig } from "./navigationsConfig";
 import NavigationItem from "./NavigationItem";
-import useSideBar from "../../hooks/useSideBar";
 import s from "./styles.module.scss";
 
 function SideBar () {
-    const { hovering, handleMouseOver, handleMouseOut } = useSideBar();
 
     return (
-        <aside 
-            className={s.sideBar} 
-            onMouseOver={handleMouseOver} 
-            onMouseOut={handleMouseOut}
-        >
+        <aside className={s.sideBar}>
             <div className={s.topContainer}>
                 <div className={s.profileInfo}>
                     <div className={s.profilePhoto}></div>
