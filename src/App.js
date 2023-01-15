@@ -7,8 +7,8 @@ function App() {
   
   return (
     <>
-    {/* <SideBar />
-    <Header /> */}
+    {/* <SideBar /> */}
+    {/* <Header /> */}
     <Routes>
       {/* <Route path="/dashboard" element={<div>Dashboard</div>} />
       <Route path="/accounts" element={<div>accounts</div>} />

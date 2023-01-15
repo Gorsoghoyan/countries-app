@@ -1,0 +1,30 @@
+@import "../../sass/variables.module.scss";
+
+.wrapper {
+    position: relative;
+    margin-bottom: 25px;
+    & input:focus~label,
+    & input:valid~label {
+        top: 0;
+        font-size: 12px;
+    }
+
+    input {
+        padding: 0 15px;
+        color: $--app-theme2;
+        font-size: 14px;
+        font-weight: 100;
+    }
+
+    label {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0 10px;
+        background: $--app-component-bg;
+        color: $--bs-gray-600-rgb;
+        transition: .3s;
+        cursor: text;
+    }
+}

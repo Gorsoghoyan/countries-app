@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
 import s from "./styles.module.scss";
 
-function NavigationItem ({ title, icon, link }) {
+function NavigationItem ({ title, icon, path }) {
 
     return (
         <NavLink 
-            to={link} 
+            to={path} 
             className={({ isActive }) => isActive ? `${s.navItem} ${s.active}` : `${s.navItem}`}
         >
             {icon}

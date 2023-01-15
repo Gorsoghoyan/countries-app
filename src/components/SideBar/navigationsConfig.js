@@ -5,16 +5,16 @@ export const navigationsConfig = [
     {
         title: "Dashboard",
         icon: <MdOutlineDashboard />,
-        link: "/dashboard"
+        path: "/dashboard"
     },
     {
         title: "Countries",
         icon: <RiEarthFill />,
-        link: "/countries"
+        path: "/countries"
     },
     {
         title: "Accounts",  
         icon: <MdManageAccounts />,
-        link: "/accounts"
+        path: "/accounts"
     },
 ];

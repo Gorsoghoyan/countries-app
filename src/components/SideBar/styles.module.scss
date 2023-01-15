@@ -9,6 +9,7 @@
     overflow: auto;
     background: $--app-sidebar-bg;
     margin-top: $--app-header-height;
+    z-index: 900;
     &::-webkit-scrollbar {
         width: 6px;
     }

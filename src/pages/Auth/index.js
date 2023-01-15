@@ -1,21 +1,29 @@
+import Login from "../../components/Login";
+import useAuth from "../../hooks/useAuth";
 import s from "./styles.module.scss";
-import { register, login } from "./authConfig";
 
 function Auth ({ type }) {
-    const target = type === "register";
+    const { target } = useAuth(type);
 
     return (
-        <div className={s.auth}>
-            <div className={s.leftPart} style={target ? register.style : login.style}>
-                <div>
-                    <h2>Countries <span>Admin App</span></h2>
-                    <p>{target ? register.text : login.text}</p>
+        <main className={s.auth}>
+            <div className={s.leftPart} style={{
+                background: `url(${target.image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "50%",
+                backgroundRepeat: "no-repeat",
+            }}>
+                <div className={s.textBlock}>
+                    <h4><b>Countries</b> Admin App</h4>
+                    <p>{target.text}</p>
                 </div>
             </div>
-            <div className={s.rightPart}>
-
-            </div>
-        </div>
+            <form className={s.rightPart}>
+                <Login />
+                {target.linkText} <hr />
+                <p className={s.footText}>© Countries Admin All Right Reserved 2023</p>
+            </form>
+        </main>
     );
 }
 

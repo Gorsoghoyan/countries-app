@@ -30,8 +30,25 @@ $--bs-body-line-height: 1.5;
 $--bs-body-color: #dee2e6;
 $--bs-body-bg: #161a1d;
 
+// colors 
+$--bs-gray-600-rgb: rgb(108,117,125);
+$--app-component-color-rgb: rgb(255,255,255,.5);
+$--app-component-border-color: #495057;
+$--bs-primary-rgb: rgb(52,143,226);
+
+// login button 
+$--login-btn-color: #FFFFFF;
+$--login-btn-bg: #00acac;
+$--login-btn-hover-bg: #008181;
+
+// register button
+$--register-btn-color: #FFFFFF;
+$--register-btn-bg: #348fe2;
+$--register-btn-hover-bg: #276baa;
+
 // auth
 $--app-component-bg: #2d353c;
+$--app-auth-text-paragraph-color: #bcbcbcd9;
 
 // fonts 
 $--bs-font-sans-serif: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";

@@ -1,27 +1,29 @@
-import { GiEarthAfricaEurope } from "react-icons/gi";
 import { AiOutlineSearch } from "react-icons/ai";
 import Input from "../../customs/Input";
+import Logo from "../Logo";
 import s from "./styles.module.scss";
 
 function Header () {
 
     return (
         <header className={s.header}>
-            <div className={s.logoPart}>
-                <GiEarthAfricaEurope />
-                <h1>Countries<span>Admin</span></h1>
-            </div>
+            <Logo 
+                nameFontSize={20}
+                svgFontSize={28}
+            />
             <div className={s.rightPart}>
-                <div className={s.searchBlock}>
+                <form className={s.searchBlock}>
                     <Input 
-                        className={s.input}
-                        type="text"
-                        placeholder="Search..."
+                        type="search"
+                        attr={{
+                            type: "text",
+                            placeholder: "Search..."
+                        }}
                     />
-                    <div className={s.iconBlock}>
+                    <button className={s.iconBlock}>
                         <AiOutlineSearch />
-                    </div>
-                </div>
+                    </button>
+                </form>
             </div>
         </header>
     );

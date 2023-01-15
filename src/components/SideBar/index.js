@@ -20,7 +20,7 @@ function SideBar () {
                             key={index}
                             title={item.title}
                             icon={item.icon}
-                            link={item.link}
+                            path={item.path}
                         />
                     )
                 }
