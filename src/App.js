@@ -1,21 +1,35 @@
-import SideBar from "./components/SideBar";
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Auth from "./pages/Auth";
+import { lazy, Suspense } from "react";
+import Loading from "./components/Loading";
+
+import PublicRoute from "./routes/PublicRoute";
+import PrivateRoute from "./routes/PrivateRoute";
+
+const Auth = lazy(() => import("./pages/Auth"));
+const Error = lazy(() => import("./pages/Error"));
+const Accounts = lazy(() => import("./pages/Accounts"));
+const Countries = lazy(() => import("./pages/Countries"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
 
 function App() {
   
   return (
-    <>
-    {/* <SideBar /> */}
-    {/* <Header /> */}
+    <Suspense fallback={<Loading />}> 
     <Routes>
-      {/* <Route path="/dashboard" element={<div>Dashboard</div>} />
-      <Route path="/accounts" element={<div>accounts</div>} />
-      <Route path="/countries" element={<div>countries</div>} /> */}
-      <Route path="/auth" element={<Auth type="login" />} />
+      <Route path="admin" element={<PrivateRoute />}>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="countries" element={<Countries />} />
+        <Route path="accounts" element={<Accounts />} />
+      </Route>
+
+      <Route path="user" element={<PublicRoute />}>
+        <Route path="login" element={<Auth type="login" />} />
+        <Route path="register" element={<Auth type="register" />} />
+      </Route>
+
+      <Route path="*" element={<Error />} />
     </Routes>
-    </>
+    </Suspense>
   );
 }
 

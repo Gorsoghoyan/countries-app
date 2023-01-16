@@ -22,7 +22,7 @@
         position: relative;
         background: url(../../images/cover-sidebar1.jpg);
         background-repeat: no-repeat;
-        background-position: center;
+        background-position: top;
         background-size: cover;
         color: $--app-theme2;
         padding: 20px;
@@ -66,7 +66,7 @@
             font-family: $--bs-font-monospace;
             padding: 15px 20px 10px 20px;
             line-height: 20px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
         }
 
@@ -76,7 +76,7 @@
             display: block;
             text-decoration: none;
             color: $--app-sidebar-component-color-rgb;
-            font-size: 15px;
+            font-size: 13.5px;
             display: flex;
             align-items: center;
             &:hover {
@@ -94,7 +94,7 @@
             }
 
             svg {
-                font-size: 18px;
+                font-size: 16px;
                 margin-right: 7px;
             }
         }

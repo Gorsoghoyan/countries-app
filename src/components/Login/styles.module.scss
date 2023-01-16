@@ -38,3 +38,11 @@
         background: $--login-btn-hover-bg;
     }
 }
+
+.forgot {
+    width: max-content;
+    color: $--app-component-color-rgb;
+    font-size: 13.5px;
+    margin-top: 17px;
+    cursor: pointer;
+}

@@ -5,12 +5,12 @@ import FormInput from "../FormInput";
 import Logo from "../Logo";
 import s from "./styles.module.scss";
 
-function Login () {
+function Login ({ setUserData }) {
 
     return (
         <>
             <div className={s.flex}>
-                <div className={s.left}>
+                <div className={s.left}>    
                     <Logo svgFontSize={32} nameFontSize={28} />
                     <p>Sign in to Countries app admin</p>
                 </div>
@@ -21,14 +21,15 @@ function Login () {
                     <FormInput 
                         key={item.id}
                         id={item.id}
-                        
+                        type={item.type}
+                        name={item.name}
                         plc={item.placeholder}
+                        onChange={(e) => setUserData(e)}
                     />
                 )
             }
-            <Button className={s.btn} type="submit">
-                Sign in
-            </Button>
+            <Button className={s.btn} type="submit">Sign in</Button>
+            <p className={s.forgot}>Forgot password?</p>
         </>
     );
 }

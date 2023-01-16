@@ -6,17 +6,21 @@ const UserAuthContext = createContext({});
 
 const UserAuthContextProvider = ({ children }) => {
     const [ user, setUser ] = useState(null);
+    useEffect(()=> {
+        console.log(user)
+    }, [user])
 
-    const registerUser = (email, name, password) => {
+    const registerUser = ({ firstName, lastName, email, password}) => {
         createUserWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                return updateProfile(auth.currentUser, {
-                    displayName: name
-                })
-            }).then((res) => console.log(res))
+            .then((userCredential) => {
+                const user = userCredential.user;
+                user.subUsers = []
+                setUser(user);
+            }).catch((error) => console.log(error.message))
     };
 
     const contextValue = {
+        user,
         registerUser
     };
 
