@@ -5,13 +5,13 @@ import { register, login } from "../pages/Auth/authConfig";
 const useAuth = (type) => {
     const target = type === "login" ? login : register;
 
-    const { registerUser } = useAuthContext();
+    const { registerUser, loginUser } = useAuthContext();
     const [ userData, setUserData ] = useState(target.userDataConfig);
     
     useEffect(() => {
         setUserData(target.userDataConfig);
     }, [ target ]);
-    
+
     const handleUserData = (e) => {
         setUserData({
             ...userData,
@@ -23,7 +23,7 @@ const useAuth = (type) => {
         e.preventDefault();
         
         if (type === "login") {
-            
+            loginUser(userData);
         } else {
             registerUser(userData);
         }

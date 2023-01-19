@@ -11,29 +11,29 @@ const Accounts = lazy(() => import("./pages/Accounts"));
 const Countries = lazy(() => import("./pages/Countries"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 
-function App() {
+export function App() {
   
   return (
     <>
-      {/* <Suspense fallback={<Loading />}> 
-      <Routes>
-        <Route path="admin" element={<PrivateRoute />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="countries" element={<Countries />} />
-          <Route path="accounts" element={<Accounts />} />
-        </Route>
+      <Suspense fallback={<Loading />}> 
+        <Routes>
+          <Route path="admin" element={<PrivateRoute />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="countries" element={<Countries />} />
+            <Route path="accounts" element={<Accounts />} />
+          </Route>
 
-        <Route path="user" element={<PublicRoute />}>
-          <Route path="login" element={<Auth type="login" />} />
-          <Route path="register" element={<Auth type="register" />} />
-        </Route>
+          <Route path="user" element={<PublicRoute />}>
+            <Route path="login" element={<Auth type="login" />} />
+            <Route path="register" element={<Auth type="register" />} />
+          </Route>
 
-        <Route path="*" element={<Error />} />
-      </Routes>
-      </Suspense> */}
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Suspense>
       <GoTopArrow />
     </>
   );
 }
 
-// export default App;
+export default App;

@@ -14,7 +14,10 @@ export const register = {
         backgroundRepeat: "no-repeat",
     },
     userDataConfig: {
-
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: ""
     }
 };
 

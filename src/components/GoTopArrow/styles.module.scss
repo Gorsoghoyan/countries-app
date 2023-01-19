@@ -1,0 +1,30 @@
+@import "../../sass/variables.module.scss";
+
+.container {
+    position: fixed;
+    bottom: 20px;
+    right: 15px;
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $--bs-btn-active-bg;
+    z-index: 1020;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease;
+    cursor: pointer;
+    
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+body {
+    height: 3000px;
+}
