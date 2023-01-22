@@ -18,7 +18,35 @@ export const register = {
         lastName: "",
         email: "",
         password: ""
-    }
+    },
+    btnText: "Sign up",
+    btnClassName: "registerBtn",
+    inputsConfig: [
+        {   
+            id: "input_1212",
+            type: "text",
+            name: "firstName",
+            placeholder: "First name"
+        },
+        {   
+            id: "input_121232e",
+            type: "text",
+            name: "lastName",
+            placeholder: "Last name"
+        },
+        {   
+            id: "input_1we23",
+            type: "email",
+            name: "email",
+            placeholder: "Email address"
+        },
+        {   
+            id: "input_12asd2",
+            type: "password",
+            name: "password",
+            placeholder: "Password"
+        }
+    ],
 };
 
 export const login = {
@@ -34,5 +62,21 @@ export const login = {
     userDataConfig: {
         email: "",
         password: ""
-    }
+    },
+    btnText: "Sign in",
+    btnClassName: "loginBtn",
+    inputsConfig: [
+        {
+            id: "aosjdo002",
+            type: "email",
+            name: "email",
+            placeholder: "Email Adress",
+        },
+        {
+            id: "asdasd9je",
+            type: "password",
+            name: "password",
+            placeholder: "Password",
+        }
+    ],
 };

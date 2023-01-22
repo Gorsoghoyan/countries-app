@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import { useAuthContext } from "../context/userAuthContext";
 import { register, login } from "../pages/Auth/authConfig";
+import useUserContext from "./useUserContext";
 
 const useAuth = (type) => {
     const target = type === "login" ? login : register;
 
-    const { registerUser, loginUser } = useAuthContext();
+    const { registerUser, loginUser, forgotPassword, reset, loading, error } = useUserContext();
     const [ userData, setUserData ] = useState(target.userDataConfig);
+
+    useEffect(() => {
+        reset();
+    }, [ type ]);
     
     useEffect(() => {
         setUserData(target.userDataConfig);
@@ -29,8 +33,15 @@ const useAuth = (type) => {
         }
     };
     
+    const handleForgotPassword = () => {
+        userData.email && forgotPassword(userData.email);
+    };
+
     return {
         target,
+        loading,
+        error,
+        handleForgotPassword,
         handleUserData,
         handleSubmit
     };

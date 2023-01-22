@@ -4,6 +4,7 @@ $--app-theme1: #00acac;
 $--app-theme2: #FFFFFF;
 
 // SideBar
+$--app-sidebar-width: 220px;
 $--app-sidebar-bg: #2d353c;
 $--app-sidebar-profile-bg: rgba(32,37,42,.75);
 $--app-sidebar-profile-bg-hover: rgba(32, 37, 42, 0.499);
@@ -14,6 +15,7 @@ $--bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255
 
 // Header
 $--app-header-height: 50px;
+$--app-header-mobile-height: 100px;
 $--app-header-bg: #262d33;
 $--app-header-color: #FFFFFF;
 $--app-header-input-bg: #1b1f24;
@@ -36,6 +38,13 @@ $--app-component-color-rgb: rgb(255,255,255,.5);
 $--app-component-border-color: #495057;
 $--bs-primary-rgb: rgb(52,143,226);
 $--bs-btn-active-bg: #008181;
+$--app-component-dropdown-bg: #495057;
+$--bs-dropdown-link-color: rgba($--app-component-color-rgb, 0.85);
+$--app-component-dropdown-hover-bg: #6c757d;
+$--app-component-bg: #2d353c;
+$--bs-btn-color: #20252a;
+$--bs-btn-bg: #ffd900;
+$--bs-btn-hover-bg: #bfa300;
 
 // login button 
 $--login-btn-color: #FFFFFF;

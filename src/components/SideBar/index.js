@@ -1,5 +1,6 @@
 import { navigationsConfig } from "./navigationsConfig";
 import NavigationItem from "./NavigationItem";
+import ProfileFlexBlock from "../ProfileFlexBlock";
 import s from "./styles.module.scss";
 
 function SideBar () {
@@ -7,10 +8,7 @@ function SideBar () {
     return (
         <aside className={s.sideBar}>
             <div className={s.topContainer}>
-                <div className={s.profileInfo}>
-                    <div className={s.profilePhoto}></div>
-                    <p>Gor soghoyan</p>
-                </div>
+                <ProfileFlexBlock flex="column" />
             </div>
             <div className={s.navigationContainer}>
                 <h3>Navigation</h3>

@@ -1,7 +1,7 @@
 @import "../../sass/variables.module.scss";
 
 .sideBar {
-    width: 220px;
+    width: $--app-sidebar-width;
     position: fixed;
     top: 0;
     left: 0;
@@ -98,5 +98,13 @@
                 margin-right: 7px;
             }
         }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .sideBar {
+        // left: -$--app-sidebar-width;
+        margin-top: 0;
+        z-index: 2000;
     }
 }

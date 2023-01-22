@@ -46,12 +46,93 @@
         justify-content: center;
         font-size: 13px;
 
+        .error {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            color: rgb(219, 0, 0);
+        }
+
+        .forgot {
+            margin-top: 20px;
+            color: $--app-component-color-rgb;
+            cursor: pointer;
+            font-size: 13.3px;
+        }
+
         hr {
             margin: 0.9375rem 0;
             color: #adb5bd;
             border: 0;
             border-top: 1px solid;
             opacity: .4;
+        }
+
+        button {
+            height: 45px;
+            width: 100%;
+            border: none;
+            outline: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 10px;
+            transition: background 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .registerTitle {
+            color: $--app-theme2;
+            font-size: 33px;
+            font-weight: 400;
+            margin-bottom: 2px;
+        }
+        
+        .registerText {
+            color: $--app-auth-register-text-color;
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .loginFlex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        
+            .left p {
+                margin-top: 5px;
+                font-size: 15px;
+                font-weight: 400;
+                color: $--app-component-color-rgb;
+            }
+        
+            .loginIcon {
+                font-size: 70px;
+                font-weight: 700;
+                color: $--bs-gray-600-rgb;
+            }
+        }
+
+        .loginBtn {
+            background: $--login-btn-bg;
+            color: $--login-btn-color;
+            &:hover {
+                background: $--login-btn-hover-bg;
+            }
+        }
+
+        .registerBtn {
+            background: $--register-btn-bg;
+            color: $--register-btn-color;
+            &:hover {
+                background: $--register-btn-hover-bg;
+            }
         }
 
         .footText {

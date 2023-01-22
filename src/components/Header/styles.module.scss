@@ -14,7 +14,18 @@
     padding: 0 20px;
     z-index: 1000;
 
+    .leftPart {
+        .burger {
+            display: none;
+            font-size: 26px;
+            cursor: pointer;
+        }
+    }
+
     .rightPart {
+        display: flex;
+        align-items: center;
+        height: 100%;
 
         .searchBlock {
             position: relative;
@@ -44,6 +55,66 @@
                 &:hover {
                     color: $--app-theme2;
                 }
+            }
+        }
+    }
+
+    .dropDownMenu {
+        position: absolute;
+        right: 0;
+        top: 100%;
+        min-width: 160px;
+        border-radius: 4px;
+        box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+        background: $--app-component-dropdown-bg;
+        display: flex;
+        flex-direction: column;
+        padding: 8px 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .1s ease;
+        &.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        a {
+            text-decoration: none;
+            color: $--app-theme2;
+            font-size: 12px;
+            white-space: nowrap;
+            font-weight: 400;
+            padding: 8px 12px;
+            color: $--bs-dropdown-link-color;
+            &:hover {
+                background: $--app-component-dropdown-hover-bg;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header {
+        height: $--app-header-mobile-height;
+        display: block;
+
+        .leftPart {
+            height: $--app-header-height;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .burger {
+                display: block;
+            }
+        }
+
+        .rightPart {
+            height: $--app-header-height;
+            justify-content: space-between;
+
+            .searchBlock {
+                width: 80%;
             }
         }
     }
