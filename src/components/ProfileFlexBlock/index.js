@@ -4,7 +4,7 @@ import s from "./styles.module.scss";
 import c from "classnames";
 
 function ProfileFlexBlock ({ flex, onClick, children, clickRef }) {
-    const { photoURL, currentUser } = useProfileFlexBlock();
+    const { photoURL, user } = useProfileFlexBlock();
 
     return (
         <div 
@@ -13,7 +13,7 @@ function ProfileFlexBlock ({ flex, onClick, children, clickRef }) {
             className={c(s.container, s[flex])} 
         >
             <img src={photoURL} alt="avatar" />
-            {currentUser && <p>{currentUser.displayName}</p>}
+            {user && <p>{user.displayName}</p>}
             <TiArrowSortedDown className={s.arrow} />
             {children && children}
         </div>

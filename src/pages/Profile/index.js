@@ -4,18 +4,18 @@ import profilePhoto from "../../images/profile_image.png";
 import s from "./styles.module.scss";
 
 function Profile () {
-    const { currentUser } = useProfile();
+    const { user } = useProfile();
 
     return (
         <main className={s.profile}>
             <div className={s.topContainer}>
                 <div className={s.bg}>
                     <img 
-                        src={currentUser?.photoURL || profilePhoto} 
+                        src={user?.photoURL || profilePhoto} 
                         alt="avatar" 
                     />
                     <div className={s.textBlock}>
-                        <h2>{currentUser?.displayName}</h2>
+                        <h2>{user?.displayName}</h2>
                         <Button>Edit Photo</Button>
                     </div>
                 </div>

@@ -1,4 +1,3 @@
-import { lazy, Suspense } from "react";
 import { FiLogIn } from "react-icons/fi";
 import FormInput from "../../components/FormInput";
 import Logo from "../../components/Logo";
@@ -40,10 +39,11 @@ function Auth ({ type }) {
                         type={item.type}
                         name={item.name}
                         plc={item.placeholder}
+                        autoFocus={item.autoFocus}
                         onChange={e => handleUserData(e)}
                     />    
                 )}
-                <Button className={s[target.btnClassName]} type="submit">
+                <Button className={s[target.btnClassName]} type="submit" disabled={loading}>
                     {loading ? <Spinner 
                         size={18}
                         backColor={"#e3e3e3"}

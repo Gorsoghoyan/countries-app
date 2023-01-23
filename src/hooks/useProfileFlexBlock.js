@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import defaultProfileImage from "../images/profile_image.png";
-import useCurrentUser from "./useCurrentUser";
+import useUserContext from "./useUserContext";
 
 const useProfileFlexBlock = () => {
     const [ photoURL, setPhotoURL ] = useState(defaultProfileImage);
-    const currentUser = useCurrentUser();
+    const { user } = useUserContext();
 
     useEffect(() => {
-        currentUser?.photoURL && setPhotoURL(currentUser.photoURL);
-    }, [ currentUser ]);
+        user?.photoURL && setPhotoURL(user.photoURL);
+    }, [ user ]);
 
     return {
         photoURL,
-        currentUser
+        user
     };
 };
 

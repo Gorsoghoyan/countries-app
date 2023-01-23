@@ -1,25 +1,47 @@
-import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext({});
 
 const UserContextProvider = ({ children }) => {
+    const [ user, setUser ] = useState(0);
     const [ loading, setLoading ] = useState(false);
     const [ error, setError ] = useState("");
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user);
+            } else {
+                setUser(false);
+            }
+        });
+    
+        return unsubscribe;
+    }, [ auth ]);
+
+    // Reset
+    const reset = () => {
+        setLoading(false);
+        setError(false);
+    };
 
     // User register
     const registerUser = async ({ firstName, lastName, email, password }) => {
         setLoading(true);
         try {
-            const res = await createUserWithEmailAndPassword(auth, email, password);
+            await createUserWithEmailAndPassword(auth, email, password);
+            navigate("/admin/dashboard");
             await updateProfile(auth.currentUser, {
                 displayName: `${firstName} ${lastName}`
             });
-            setLoading(false);
             setError("");
+            setLoading(false);
         } catch (error) {
             setLoading(false);
             setError(error.message);
@@ -30,9 +52,10 @@ const UserContextProvider = ({ children }) => {
     const loginUser = async ({ email, password }) => {
         setLoading(true);
         try {
-            const res = await signInWithEmailAndPassword(auth, email, password);
-            setLoading(false);
+            await signInWithEmailAndPassword(auth, email, password);
             setError("")
+            setLoading(false);
+            navigate("/admin/dashboard");
         } catch (error) {
             setLoading(false);
             setError(error.message);
@@ -42,6 +65,7 @@ const UserContextProvider = ({ children }) => {
     // User logout
     const logoutUser = () => {
         signOut(auth);
+        navigate("/user/login");
     };
 
     // Forgot password
@@ -60,6 +84,7 @@ const UserContextProvider = ({ children }) => {
             setError(false);
             setLoading(false);
         } catch (error) {
+            setLoading(false);
             setError(error.message);
         }
     };
@@ -93,14 +118,10 @@ const UserContextProvider = ({ children }) => {
         );
     };
 
-    const reset = () => {
-        setLoading(false);
-        setError(false);
-    };
-
     return <UserContext.Provider value={{
         error,
         loading,
+        user,
         reset,
         addSubUser,
         loginUser,

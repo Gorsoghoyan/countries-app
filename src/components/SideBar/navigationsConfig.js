@@ -1,5 +1,6 @@
 import { MdOutlineDashboard, MdManageAccounts } from "react-icons/md";
 import { RiEarthFill } from "react-icons/ri";
+import { CgProfile } from "react-icons/cg";
 
 export const navigationsConfig = [
     {
@@ -17,4 +18,9 @@ export const navigationsConfig = [
         icon: <MdManageAccounts />,
         path: "/admin/accounts"
     },
+    {
+        title: "Profile",
+        icon: <CgProfile />,
+        path: "/admin/profile"
+    }
 ];

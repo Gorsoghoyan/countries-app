@@ -1,10 +1,10 @@
 import { GiEarthAfricaEurope } from "react-icons/gi";
 import s from "./styles.module.scss";
 
-function Logo ({ svgFontSize, nameFontSize }) {
+function Logo ({ svgFontSize, nameFontSize, cursor, onClick }) {
 
     return (
-        <div className={s.logo}>
+        <div className={s.logo} onClick={onClick} style={{ cursor }}>
             <GiEarthAfricaEurope 
                 fontSize={svgFontSize}
             />

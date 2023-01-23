@@ -10,12 +10,17 @@ import s from "./styles.module.scss";
 import c from "classnames";
 
 function Header () {
-    const { open, clickRef, closeDropDown, handleClick } = useHeader();
+    const { open, clickRef, navigateHomePage, handleUserLogout, closeDropDown, handleClick } = useHeader();
 
     return (
         <header className={s.header}>
             <div className={s.leftPart}>
-                <Logo nameFontSize={20} svgFontSize={28} />
+                <Logo 
+                    nameFontSize={20} 
+                    svgFontSize={28} 
+                    cursor={"pointer"}
+                    onClick={navigateHomePage} 
+                />
                 <RxHamburgerMenu 
                     className={s.burger}
                 />
@@ -44,7 +49,12 @@ function Header () {
                                 key={index}
                                 title={item.title}
                                 path={item.path}
-                                onClick={closeDropDown}
+                                onClick={() => {
+                                    closeDropDown();
+                                    if (item.type === "logout") {
+                                        handleUserLogout();
+                                    }
+                                }}
                             />
                         )}
                     </div>

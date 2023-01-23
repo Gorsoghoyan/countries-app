@@ -1,10 +1,10 @@
-import useCurrentUser from "./useCurrentUser";
+import useUserContext from "./useUserContext";
 
 const useProfile = () => {
-    const currentUser = useCurrentUser();
+    const { user } = useUserContext();
 
     return {
-        currentUser,
+        user,
     };  
 };
 

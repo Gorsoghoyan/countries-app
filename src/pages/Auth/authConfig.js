@@ -26,7 +26,8 @@ export const register = {
             id: "input_1212",
             type: "text",
             name: "firstName",
-            placeholder: "First name"
+            placeholder: "First name",
+            autoFocus: true
         },
         {   
             id: "input_121232e",
@@ -71,6 +72,7 @@ export const login = {
             type: "email",
             name: "email",
             placeholder: "Email Adress",
+            autoFocus: true
         },
         {
             id: "asdasd9je",
