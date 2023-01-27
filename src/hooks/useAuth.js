@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { register, login } from "../pages/Auth/authConfig";
 import useUserContext from "./useUserContext";
 
 const useAuth = (type) => {
     const target = type === "login" ? login : register;
 
-    const { registerUser, loginUser, forgotPassword, reset, loading, error } = useUserContext();
+    const { registerUser, loginUser, reset, loading, error } = useUserContext();
     const [ userData, setUserData ] = useState(target.userDataConfig);
+    const navigate = useNavigate();
 
     useEffect(() => {
         reset();
@@ -34,7 +36,7 @@ const useAuth = (type) => {
     };
     
     const handleForgotPassword = () => {
-        userData.email && forgotPassword(userData.email);
+        navigate("/forgot-password");
     };
 
     return {

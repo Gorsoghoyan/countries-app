@@ -34,7 +34,7 @@ export function App() {
             <Route path="user/login" element={<Auth type="login" />} />
             <Route path="user/register" element={<Auth type="register" />} />
             <Route path="reset-password" element={<Password type="reset" />} />
-            <Route path="forget-password" element={<Password type="forgot" />} />
+            <Route path="forgot-password" element={<Password type="forgot" />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>

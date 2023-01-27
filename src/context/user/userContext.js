@@ -1,9 +1,10 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { confirmPasswordReset, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { createContext, useEffect, useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const UserContext = createContext({});
 
@@ -69,8 +70,29 @@ const UserContextProvider = ({ children }) => {
     };
 
     // Forgot password
-    const forgotPassword = (email) => {
-        return sendPasswordResetEmail(auth, email);
+    const forgotPassword = async (email) => {
+        setLoading(true);
+        try {
+            await sendPasswordResetEmail(auth, email);
+            setLoading(false);
+            toast.success('Please check your gmail');
+        } catch (error) {
+            setLoading(false);
+            toast.error(error.message);
+        }
+    };
+
+    const resetPassword = async (oobCode, newPassword) => {
+        setLoading(true);
+        try {
+            await confirmPasswordReset(auth, oobCode, newPassword);
+            setLoading(false);
+            toast.success('Password has been changed, you can login now.');
+            navigate("/user/login");
+        } catch (error) {
+            setLoading(false);
+            toast.error(error.message);
+        }
     };
 
     // Add sub user
@@ -81,7 +103,7 @@ const UserContextProvider = ({ children }) => {
             await setDoc(doc(db, "users", res.user.uid), {
                 ...data
             });     
-            setError(false);
+            setError("");
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -128,6 +150,7 @@ const UserContextProvider = ({ children }) => {
         registerUser,
         logoutUser,
         forgotPassword,
+        resetPassword,
         fileUpload,
     }}>
         {children}

@@ -1,21 +1,53 @@
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import GoBack from "../../components/GoBack";
+import Spinner from "../../components/Spinner";
 import Button from "../../customs/Button";
 import Input from "../../customs/Input";
 import usePassword from "../../hooks/usePassword";
 import s from "./styles.module.scss";
 
 function Password ({ type }) {
-    const { target } = usePassword(type);
-    
+    const { target, value, loading, handleSetValue, handleSubmit } = usePassword(type);
+
     return (
         <main className={s.container}>
+            <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                limit={1}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <h2>{target.title}</h2>
-            <form> 
+            <form onSubmit={handleSubmit}> 
                 <p>{target.formTitle}</p>
                 <Input 
-                    type={target.inputType}     
+                    attr={{
+                        type: target.inputType,
+                        required: true,
+                        autoFocus: true,
+                        value,
+                        onChange: e => handleSetValue(e.target.value)
+                    }}
                 />
-                <Button>{target.btnText}</Button>
+                <Button disabled={loading}>
+                    {
+                        loading ? 
+                        <Spinner 
+                            size={18}
+                            backColor={"#e3e3e3"}
+                            frontColor="#fff"
+                            thickness={"3px"}
+                        /> : target.btnText
+                    }
+                </Button>
             </form>
             <GoBack
                 top={20}

@@ -1,11 +1,11 @@
-export const resetPassword = {
+export const resetPasswordConfig = {
     title: "Reset password",
     formTitle: "New password",
     btnText: "Reset password",
     inputType: "password"
 };
 
-export const forgotPassword = {
+export const forgotPasswordConfig = {
     title: "Forgot password",
     formTitle: "Email address",
     btnText: "Submit",
