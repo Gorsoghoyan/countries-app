@@ -10,11 +10,11 @@ import s from "./styles.module.scss";
 import c from "classnames";
 
 function Header () {
-    const { open, clickRef, navigateHomePage, handleUserLogout, closeDropDown, handleClick } = useHeader();
+    const { open, clickRef, sideBarOpen, handleToggleSideBar, navigateHomePage, handleUserLogout, closeDropDown, handleClick } = useHeader();
 
     return (
         <header className={s.header}>
-            <div className={s.leftPart}>
+            <div className={c(s.leftPart, { [s.activeSideBar]: sideBarOpen })}>
                 <Logo 
                     nameFontSize={20} 
                     svgFontSize={28} 
@@ -23,6 +23,7 @@ function Header () {
                 />
                 <RxHamburgerMenu 
                     className={s.burger}
+                    onClick={() => handleToggleSideBar()}
                 />
             </div>
             <div className={s.rightPart}>

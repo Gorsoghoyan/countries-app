@@ -2,7 +2,7 @@ import { confirmPasswordReset, createUserWithEmailAndPassword, onAuthStateChange
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { createContext, useEffect, useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
-import { auth, db, storage } from "../../firebase";
+import { auth, fs, storage } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -100,7 +100,7 @@ const UserContextProvider = ({ children }) => {
         setLoading(true);
         try {
             const res = await createUserWithEmailAndPassword(auth, data.email, data.password);
-            await setDoc(doc(db, "users", res.user.uid), {
+            await setDoc(doc(fs, "users", res.user.uid), {
                 ...data
             });     
             setError("");

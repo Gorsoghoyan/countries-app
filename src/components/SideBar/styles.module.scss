@@ -10,12 +10,16 @@
     background: $--app-sidebar-bg;
     margin-top: $--app-header-height;
     z-index: 900;
+    transition: left .1s ease;
     &::-webkit-scrollbar {
         width: 6px;
     }
     &::-webkit-scrollbar-thumb {
         background-color: #adb5bd;
         border-radius: 10px;
+    }
+    &.open {
+        left: 0;
     }
 
     .topContainer {
@@ -103,7 +107,7 @@
 
 @media screen and (max-width: 767px) {
     .sideBar {
-        // left: -$--app-sidebar-width;
+        left: -$--app-sidebar-width;
         margin-top: 0;
         z-index: 2000;
     }

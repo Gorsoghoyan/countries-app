@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import Loading from "./components/Loading";
 import GoTopArrow from "./components/GoTopArrow";
 import PublicRoute from "./routes/PublicRoute";
@@ -16,7 +16,21 @@ const Countries = lazy(() => import("./pages/Countries"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 
 export function App() {
-  
+
+  useEffect(() => {
+    const getCountries = async () => {
+      try {
+        const resp = await fetch("https://countries-app-auth-default-rtdb.firebaseio.com/countries");
+        const res = await resp.json();
+        if (res.message) throw new Error(res.message);
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+    };
+    getCountries();
+  }, []);
+
   return (
     <>
       <Suspense fallback={<Loading />}> 

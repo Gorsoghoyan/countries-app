@@ -1,4 +1,5 @@
 import { FiLogIn } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import FormInput from "../../components/FormInput";
 import Logo from "../../components/Logo";
 import Spinner from "../../components/Spinner";
@@ -7,7 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import s from "./styles.module.scss";
 
 function Auth ({ type }) {
-    const { target, loading, error, handleForgotPassword, handleUserData, handleSubmit } = useAuth(type);
+    const { target, loading, error, handleUserData, handleSubmit } = useAuth(type);
 
     return (
         <main className={s.auth}>
@@ -51,7 +52,9 @@ function Auth ({ type }) {
                         thickness={"3px"}
                     /> : target.btnText}
                 </Button>
-                {type === "login" && <p className={s.forgot} onClick={handleForgotPassword}>Forgot password?</p>}
+                {type === "login" && 
+                    <Link to="/forgot-password" className={s.forgot}>Forgot password?</Link>
+                }
                 {target.linkText} <hr />
                 <p className={s.footText}>© Countries Admin All Right Reserved 2023</p>
             </form>

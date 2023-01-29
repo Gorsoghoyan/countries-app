@@ -1,11 +1,17 @@
+import PageTopPart from "../../components/PageTopPart";
 import s from "./styles.module.scss";
 
 function Accounts () {
 
     return (
-        <main className={s.accounts}>
-            
-        </main>
+        <section className={s.accounts}>
+            <PageTopPart 
+                title="Accounts"
+                button={true}
+                btnText={"Add user"}
+                path={""}
+            />
+        </section>
     );
 }
 

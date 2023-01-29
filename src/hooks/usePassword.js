@@ -16,7 +16,7 @@ const usePassword = (type) => {
         if (type === "forgot") {
             forgotPassword(value);
         } else {
-            resetPassword(query.get("oobCode", value));
+            resetPassword(query.get("oobCode"), value);
         }
 
         setValue("");   

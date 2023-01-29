@@ -4,6 +4,7 @@
     margin-top: $--app-header-height;
     margin-left: $--app-sidebar-width;
     min-height: calc(100vh - $--app-header-height);
+    transition: margin-left .1s ease;
 }
 
 @media screen and (max-width: 767px) {

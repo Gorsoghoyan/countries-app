@@ -1,0 +1,19 @@
+@import "../../sass/variables.module.scss";
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    line-height: 1.35;
+    color: $--bs-body-color;
+    
+    h1 {
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    button {
+        border: none;
+    }
+}

@@ -56,8 +56,7 @@
 
         .forgot {
             margin-top: 20px;
-            color: $--app-component-color-rgb;
-            cursor: pointer;
+            color: $--bs-primary-rgb;
             font-size: 13.3px;
         }
 
@@ -183,6 +182,7 @@
 
         .rightPart {
             width: 100%;
+            padding: 40px;
         }
     }
 }

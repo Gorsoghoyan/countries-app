@@ -18,6 +18,7 @@
         .burger {
             display: none;
             font-size: 26px;
+            transition: all .3s ease;
             cursor: pointer;
         }
     }
