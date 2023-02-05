@@ -74,6 +74,7 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity .1s ease;
+        cursor: auto;
         &.open {
             opacity: 1;
             visibility: visible;

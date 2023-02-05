@@ -29,7 +29,11 @@ const useAuth = (type) => {
         if (type === "login") {
             loginUser(userData);
         } else {
-            registerUser(userData);
+            registerUser({
+                email: userData.email,
+                password: userData.password,
+                displayName: `${userData.firstName} ${userData.lastName}`,
+            });
         }
     };
 

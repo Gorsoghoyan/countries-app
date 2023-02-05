@@ -6,7 +6,7 @@ function PageTopPart ({ title, button, btnText, path }) {
     return (
         <div className={s.container}>
             <h1>{title}</h1>
-            {button && <Link to={path}>{btnText}</Link>}
+            {button && <Link className={s.btnWrapper} to={path}>{btnText}</Link>}
         </div>
     );
 }

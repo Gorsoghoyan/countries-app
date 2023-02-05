@@ -1,11 +1,17 @@
+import PageTopPart from "../../components/PageTopPart";
 import s from "./styles.module.scss";
 
 function Countries () {
 
     return (
-        <main className={s.countries}>
-            
-        </main>
+        <div className={s.countries}>
+            <PageTopPart 
+                title="Countries"
+                button={true}
+                btnText={"Add country"}
+                path={""}
+            />
+        </div>
     );
 }
 

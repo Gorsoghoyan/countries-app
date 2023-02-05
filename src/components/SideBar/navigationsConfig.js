@@ -14,6 +14,7 @@ export const navigationsConfig = [
         path: "/admin/countries"
     },
     {
+        type: "accounts",
         title: "Accounts",  
         icon: <MdManageAccounts />,
         path: "/admin/accounts"

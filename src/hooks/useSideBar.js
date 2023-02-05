@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectSideBarOpen } from "../redux/slices/sideBar/sideBarSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSideBarOpen, toggleSideBar } from "../redux/slices/sideBar/sideBarSlice";
+import { selectCurrentUser } from "../redux/slices/user/userSlice";
 
 const useSideBar = () => {
     const [ open, setOpen ] = useState(false);
+    const currentUser = useSelector(selectCurrentUser);
     const openSideBar = useSelector(selectSideBarOpen);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (window.innerWidth > 767) return;    
@@ -16,11 +19,12 @@ const useSideBar = () => {
     }, [ openSideBar ]);
 
     const closeSideBar = () => {
-        setOpen(false);
+        dispatch(toggleSideBar());
     };
 
     return {
         open,
+        currentUser,
         closeSideBar
     };
 };

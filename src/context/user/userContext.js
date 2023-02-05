@@ -1,30 +1,20 @@
-import { confirmPasswordReset, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { confirmPasswordReset, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { createContext, useEffect, useState } from "react";
-import { doc, setDoc } from "firebase/firestore";
+import { createContext, useState } from "react";
+import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { auth, fs, storage } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { userLogin, userLogout } from "../../redux/slices/user/userSlice";
 
 export const UserContext = createContext({});
 
 const UserContextProvider = ({ children }) => {
-    const [ user, setUser ] = useState(0);
     const [ loading, setLoading ] = useState(false);
     const [ error, setError ] = useState("");
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
-            } else {
-                setUser(false);
-            }
-        });
-    
-        return unsubscribe;
-    }, [ auth ]);
+    const dispatch = useDispatch();
 
     // Reset
     const reset = () => {
@@ -33,16 +23,14 @@ const UserContextProvider = ({ children }) => {
     };
 
     // User register
-    const registerUser = async ({ firstName, lastName, email, password }) => {
+    const registerUser = async ({ displayName, email, password }) => {
         setLoading(true);
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            navigate("/admin/dashboard");
-            await updateProfile(auth.currentUser, {
-                displayName: `${firstName} ${lastName}`
-            });
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            await updateProfile(userCredential.user, { displayName: displayName });
             setError("");
             setLoading(false);
+            navigate("/user/login");
         } catch (error) {
             setLoading(false);
             setError(error.message);
@@ -53,7 +41,13 @@ const UserContextProvider = ({ children }) => {
     const loginUser = async ({ email, password }) => {
         setLoading(true);
         try {
-            await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const docSnap = await getDoc(doc(fs, "subUsers", userCredential.user.uid));
+            if (docSnap.exists()) {
+                dispatch(userLogin(docSnap.data()));
+            } else {
+                dispatch(userLogin(userCredential.user));
+            }
             setError("")
             setLoading(false);
             navigate("/admin/dashboard");
@@ -66,6 +60,7 @@ const UserContextProvider = ({ children }) => {
     // User logout
     const logoutUser = () => {
         signOut(auth);
+        dispatch(userLogout());
         navigate("/user/login");
     };
 
@@ -99,8 +94,8 @@ const UserContextProvider = ({ children }) => {
     const addSubUser = async (data) => {
         setLoading(true);
         try {
-            const res = await createUserWithEmailAndPassword(auth, data.email, data.password);
-            await setDoc(doc(fs, "users", res.user.uid), {
+            const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+            await setDoc(doc(fs, "subUsers", userCredential.user.uid), {
                 ...data
             });     
             setError("");
@@ -111,14 +106,33 @@ const UserContextProvider = ({ children }) => {
         }
     };
 
+    const getSubUsers = async () => {
+        setLoading(true);
+        try {
+            const subUsers = [];
+            const querySnapshot = await getDocs(collection(fs, "subUsers"));
+            querySnapshot.forEach((doc) => {
+                subUsers.push(doc.data());
+            });
+            setError("");
+            setLoading(false);
+            return subUsers;
+        } catch (error) {
+            setLoading(false);
+            setError(error.message);
+        }
+    };
+ 
     // Files upload
-    const fileUpload = ({ file }) => {
+    const fileUpload = (file, setPhotoURL) => {
+        const name = new Date().getTime() + file.name;
         const storageRef = ref(storage, file.name);
         const uploadTask = uploadBytesResumable(storageRef, file);
-    
+            
         uploadTask.on('state_changed', 
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                // setPerc(progress);
                 switch (snapshot.state) {
                     case 'paused':
                         console.log('Upload is paused');
@@ -131,10 +145,11 @@ const UserContextProvider = ({ children }) => {
                 }
             }, 
             (error) => {
+                
             }, 
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    
+                    setPhotoURL(downloadURL);
                 });
             }
         );
@@ -143,11 +158,11 @@ const UserContextProvider = ({ children }) => {
     return <UserContext.Provider value={{
         error,
         loading,
-        user,
         reset,
         addSubUser,
         loginUser,
         registerUser,
+        getSubUsers,
         logoutUser,
         forgotPassword,
         resetPassword,

@@ -6,7 +6,7 @@ import s from "./styles.module.scss";
 import c from "classnames";
 
 function SideBar () {
-    const { open, closeSideBar } = useSideBar();
+    const { open, currentUser, closeSideBar } = useSideBar();
 
     return (
         <aside className={c(s.sideBar, { [s.open]: open })}>
@@ -19,10 +19,12 @@ function SideBar () {
                     navigationsConfig.map((item, index) => 
                         <NavigationItem 
                             key={index}
+                            type={item.type}
                             title={item.title}
                             icon={item.icon}
                             path={item.path}
                             onClick={closeSideBar}
+                            currentUser={currentUser}
                         />
                     )
                 }

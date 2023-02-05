@@ -20,10 +20,10 @@
 
             h2 {
                 font-weight: 600;
-                margin-bottom: 5px;
+                margin-bottom: 10px;
             }
 
-            button {
+            .fileUpload {
                 padding: 5px 6px;
                 color: $--bs-btn-color;
                 background: $--bs-btn-bg;
@@ -34,6 +34,10 @@
                 cursor: pointer;
                 &:hover {
                     background: $--bs-btn-hover-bg; 
+                }
+
+                input {
+                    display: none;
                 }
             }
         }

@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
 import s from "./styles.module.scss";
 
-function NavigationItem ({ title, icon, path, onClick }) {
+function NavigationItem ({ title, type, icon, path, onClick, currentUser }) {
+
+    if (currentUser?.permissions && type === "accounts") {
+        return null;
+    }
 
     return (
         <NavLink 

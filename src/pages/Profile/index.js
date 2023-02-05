@@ -1,26 +1,31 @@
-import Button from "../../customs/Button";
+import Input from "../../customs/Input";
 import useProfile from "../../hooks/useProfile";
-import profilePhoto from "../../images/profile_image.png";
 import s from "./styles.module.scss";
 
 function Profile () {
-    const { user } = useProfile();
+    const { currentUser, photoURL, handleFileChange } = useProfile();
 
     return (
-        <main className={s.profile}>
+        <div className={s.profile}>
             <div className={s.topContainer}>
                 <div className={s.bg}>
                     <img 
-                        src={user?.photoURL || profilePhoto} 
+                        src={photoURL} 
                         alt="avatar" 
                     />
                     <div className={s.textBlock}>
-                        <h2>{user?.displayName}</h2>
-                        <Button>Edit Photo</Button>
+                        <h2>{currentUser?.displayName}</h2>
+                        <label className={s.fileUpload} style={null}>
+                            <Input attr={{
+                                type: "file",
+                                onChange: handleFileChange
+                            }} />
+                            Edit Photo
+                        </label>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     );
 }
 

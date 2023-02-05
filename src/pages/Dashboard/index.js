@@ -1,22 +1,15 @@
-import useUserContext from "../../hooks/useUserContext";
+import PageTopPart from "../../components/PageTopPart";
 import s from "./styles.module.scss";
 
 function Dashboard () {
-    const { addSubUser } = useUserContext();
 
     return (
-        <main className={s.dashboard}>
-            <button onClick={() => {
-                addSubUser({
-                    firstName: "asdasdd",
-                    lastName: "asdasda",
-                    email: "gggggg@gmailsdf.com",
-                    password: "dasdasd"
-                })
-            }}>
-                add sub user
-            </button>
-        </main>
+        <div className={s.dashboard}>
+            <PageTopPart 
+                title="Dashboard"
+                button={false}
+            />
+        </div>
     );
 }
 

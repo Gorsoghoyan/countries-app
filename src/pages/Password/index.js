@@ -1,4 +1,3 @@
-import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import GoBack from "../../components/GoBack";
 import Spinner from "../../components/Spinner";
@@ -12,19 +11,6 @@ function Password ({ type }) {
 
     return (
         <main className={s.container}>
-            <ToastContainer
-                position="top-center"
-                autoClose={2000}
-                limit={1}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
             <h2>{target.title}</h2>
             <form onSubmit={handleSubmit}> 
                 <p>{target.formTitle}</p>

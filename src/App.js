@@ -1,11 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
+import Toastify from "./components/Toastify";
 import Loading from "./components/Loading";
 import GoTopArrow from "./components/GoTopArrow";
 import PublicRoute from "./routes/PublicRoute";
-import PrivateRoute from "./routes/PrivateRoute";
+import RequireAuth from "./routes/RequireAuth";
+import PrivateRoute from "./routes/PrivateRoute"; 
 import LayoutRoute from "./routes/LayoutRoute/LayoutRoute";
-import RedirectRoute from "./routes/RedirectRoute";
 
 const Auth = lazy(() => import("./pages/Auth"));
 const Error = lazy(() => import("./pages/Error"));
@@ -16,26 +17,11 @@ const Countries = lazy(() => import("./pages/Countries"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 
 export function App() {
-
-  useEffect(() => {
-    const getCountries = async () => {
-      try {
-        const resp = await fetch("https://countries-app-auth-default-rtdb.firebaseio.com/countries");
-        const res = await resp.json();
-        if (res.message) throw new Error(res.message);
-        console.log(res)
-      } catch (error) {
-        console.log(error)
-      }
-    };
-    getCountries();
-  }, []);
-
   return (
     <>
       <Suspense fallback={<Loading />}> 
         <Routes>
-          <Route index path="/" element={<RedirectRoute />} />
+          <Route index path="/" element={<RequireAuth />} />
           <Route path="" element={<PrivateRoute />}>
             <Route path="" element={<LayoutRoute />}>
               <Route path="admin/dashboard" element={<Dashboard />} />
@@ -54,6 +40,7 @@ export function App() {
         </Routes>
       </Suspense>
       <GoTopArrow />
+      <Toastify />
     </>
   );
 }
