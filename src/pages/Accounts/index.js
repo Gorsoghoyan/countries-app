@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
+import AccountsList from "../../components/AccountsList";
 import PageTopPart from "../../components/PageTopPart";
-import Table from "../../components/Table";
 import useAccounts from "../../hooks/useAccounts";
 import s from "./styles.module.scss";
 
@@ -19,13 +19,7 @@ function Accounts () {
                 btnText={"Add user"}
                 path={""}
             />
-            {
-                // subUsers.length ?
-                // <Table 
-
-                // /> :
-                
-            }
+            <AccountsList />
         </div>
     );
 }

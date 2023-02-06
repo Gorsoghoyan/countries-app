@@ -1,0 +1,12 @@
+@import "../../sass/variables.module.scss";
+
+.paper {
+    margin: 40px 0;
+
+    .table {
+        th, tr, td {
+            // background: $--bs-body-bg;
+            // color: $--app-theme2;
+        }
+    }    
+}
