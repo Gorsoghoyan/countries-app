@@ -2,11 +2,50 @@
 
 .paper {
     margin: 40px 0;
+    border-radius: 0 !important;
 
     .table {
         th, tr, td {
-            // background: $--bs-body-bg;
-            // color: $--app-theme2;
+            background: $--app-header-bg;
+            border-color: rgb(75, 75, 75);
+            color: $--app-theme2;
         }
     }    
+
+    .box {
+        background: $--app-header-bg;
+        color: $--app-theme2;
+        padding: 20px;
+
+        .autoComplete {
+            
+        }
+    }
+
+    .pagination {
+        background: $--app-header-bg;
+        color: $--app-theme2;
+
+        svg {
+            color: $--app-theme2;
+        }
+    }
+
+    .btn {
+        background: $--bs-body-bg;
+        color: $--bs-body-color;
+        &:hover {
+            background: $--bs-body-bg;
+        }
+    }
+}
+
+.error {
+    text-align: center;
+    margin-top: 22%;
+    font-size: 30px;
+}
+
+.loading {
+    margin: 22% auto 0 auto;
 }

@@ -15,9 +15,9 @@ function Accounts () {
         <div className={s.accounts}>
             <PageTopPart 
                 title="Accounts"
-                button={true}
-                btnText={"Add user"}
-                path={""}
+                button={false}
+                // btnText={"Add user"}
+                // path={""}
             />
             <AccountsList />
         </div>

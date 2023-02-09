@@ -7,15 +7,26 @@ const useAccountsList = () => {
     const [ page, setPage ] = useState(0);
     const [ rowsPerPage, setRowsPerPage ] = useState(5);
     const [ rows, setRows ] = useState([]);
+    const [ loading, setLoading ] = useState(false);
+    const [ error, setError ] = useState("");
     const empCollectionRef = collection(fs, "subUsers");    
 
     useEffect(() => {
         getUsers();   
-    }, [ empCollectionRef ]);
+    }, []);
 
     async function getUsers () {
-        const data = await getDocs(empCollectionRef);
-        setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        setLoading(true);
+        try {
+            const data = await getDocs(empCollectionRef);
+            if (!data.docs.length) throw new Error("There are no sub-users yet.");
+            setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+            setLoading(false);
+            setError("");
+        } catch (error) {
+            setLoading(false);
+            setError(error.message);
+        }
     };
   
     const handleChangePage = (event, newPage) => {
@@ -28,10 +39,18 @@ const useAccountsList = () => {
     };
 
     const deleteApi = async (id) => {
-        const userDoc = doc(fs, "products", id);
-        await deleteDoc(userDoc);
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
-        getUsers();
+        setLoading(true);
+        try {
+            const userDoc = doc(fs, "subUsers", id);
+            await deleteDoc(userDoc);
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            getUsers();
+            setLoading(false);
+            setError("");
+        } catch (error) {
+            setLoading(false);
+            setError(error.message);
+        }
     };
 
     const deleteUser = (id) => {
@@ -49,11 +68,22 @@ const useAccountsList = () => {
           }
         });
     };
+
+    const filterData = (v) => {
+        if (v) {
+          setRows([v]);
+        } else {
+          getUsers();
+        }
+    };
     
     return {
         page,
         rows,
         rowsPerPage,
+        loading,
+        error,
+        filterData,
         deleteUser,
         handleChangePage,
         handleChangeRowsPerPage

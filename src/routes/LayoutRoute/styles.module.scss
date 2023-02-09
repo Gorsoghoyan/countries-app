@@ -1,6 +1,7 @@
 @import "../../sass/variables.module.scss";
 
 .layout {
+    position: relative;
     margin-top: $--app-header-height;
     margin-left: $--app-sidebar-width;
     min-height: calc(100vh - $--app-header-height);
