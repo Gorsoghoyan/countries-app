@@ -1,188 +1,180 @@
 @import "../../sass/variables.module.scss";
 
 .auth {
+  display: flex;
+  min-height: 100vh;
+
+  .leftPart {
+    width: calc(100% - 500px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: 0;
     display: flex;
-    min-height: 100vh;
+    align-items: flex-end;
 
-    .leftPart {
-        width: calc(100% - 500px);
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        top: 0;
-        display: flex;
-        align-items: flex-end;
+    .textBlock {
+      width: 100%;
+      padding: 60px 60px 45px;
+      font-size: 18px;
+      letter-spacing: 0.25px;
+      z-index: 20;
+      font-weight: 300;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, #000 100%);
 
-        .textBlock {
-            width: 100%;
-            padding: 60px 60px 45px;
-            font-size: 18px;
-            letter-spacing: .25px;
-            z-index: 20;
-            font-weight: 300;
-            background: linear-gradient(to bottom,rgba(0,0,0,0) 0,#000 100%);
-            
-            h4 {
-                color: $--app-theme2;
-                font-size: 34px;
-                font-weight: normal;
-                margin-bottom: 7.5px;
-            }
-            
-            p {
-                color: $--app-auth-text-paragraph-color;
-                margin-bottom: 15px;
-            }
-        }
+      h4 {
+        color: $--app-theme2;
+        font-size: 34px;
+        font-weight: normal;
+        margin-bottom: 7.5px;
+      }
+
+      p {
+        color: $--app-auth-text-paragraph-color;
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .rightPart {
+    width: 500px;
+    margin-left: auto;
+    background: $--app-component-bg;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 13px;
+
+    .forgot {
+      margin-top: 20px;
+      color: $--bs-primary-rgb;
+      font-size: 13.3px;
     }
 
-    .rightPart {
-        width: 500px;
-        margin-left: auto;
-        background: $--app-component-bg;
-        padding: 60px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        font-size: 13px;
-
-        .error {
-            text-align: center;
-            margin-bottom: 20px;
-            font-weight: bold;
-            font-size: 14px;
-            color: rgb(219, 0, 0);
-        }
-
-        .forgot {
-            margin-top: 20px;
-            color: $--bs-primary-rgb;
-            font-size: 13.3px;
-        }
-
-        hr {
-            margin: 0.9375rem 0;
-            color: #adb5bd;
-            border: 0;
-            border-top: 1px solid;
-            opacity: .4;
-        }
-
-        button {
-            height: 45px;
-            width: 100%;
-            border: none;
-            outline: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 15px;
-            margin-top: 10px;
-            transition: background 0.2s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .registerTitle {
-            color: $--app-theme2;
-            font-size: 33px;
-            font-weight: 400;
-            margin-bottom: 2px;
-        }
-        
-        .registerText {
-            color: $--app-auth-register-text-color;
-            font-size: 15px;
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
-
-        .loginFlex {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        
-            .left p {
-                margin-top: 5px;
-                font-size: 15px;
-                font-weight: 400;
-                color: $--app-component-color-rgb;
-            }
-        
-            .loginIcon {
-                font-size: 70px;
-                font-weight: 700;
-                color: $--bs-gray-600-rgb;
-            }
-        }
-
-        .loginBtn {
-            background: $--login-btn-bg;
-            color: $--login-btn-color;
-            &:hover {
-                background: $--login-btn-hover-bg;
-            }
-        }
-
-        .registerBtn {
-            background: $--register-btn-bg;
-            color: $--register-btn-color;
-            &:hover {
-                background: $--register-btn-hover-bg;
-            }
-        }
-
-        .footText {
-            color: $--bs-gray-600-rgb;
-            text-align: center;
-        }
-
-        .linkText {
-            color: $--app-component-color-rgb;
-            margin: 15px 0 50px 0;
-
-            a {
-                color: $--bs-primary-rgb;
-            }
-        }
+    hr {
+      margin: 0.9375rem 0;
+      color: #adb5bd;
+      border: 0;
+      border-top: 1px solid;
+      opacity: 0.4;
     }
+
+    button {
+      height: 45px;
+      width: 100%;
+      border: none;
+      outline: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 15px;
+      margin-top: 10px;
+      transition: background 0.2s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .registerTitle {
+      color: $--app-theme2;
+      font-size: 33px;
+      font-weight: 400;
+      margin-bottom: 2px;
+    }
+
+    .registerText {
+      color: $--app-auth-register-text-color;
+      font-size: 15px;
+      font-weight: 400;
+      margin-bottom: 30px;
+    }
+
+    .loginFlex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+
+      .left p {
+        margin-top: 5px;
+        font-size: 15px;
+        font-weight: 400;
+        color: $--app-component-color-rgb;
+      }
+
+      .loginIcon {
+        font-size: 70px;
+        font-weight: 700;
+        color: $--bs-gray-600-rgb;
+      }
+    }
+
+    .loginBtn {
+      background: $--login-btn-bg;
+      color: $--login-btn-color;
+      &:hover {
+        background: $--login-btn-hover-bg;
+      }
+    }
+
+    .registerBtn {
+      background: $--register-btn-bg;
+      color: $--register-btn-color;
+      &:hover {
+        background: $--register-btn-hover-bg;
+      }
+    }
+
+    .footText {
+      color: $--bs-gray-600-rgb;
+      text-align: center;
+    }
+
+    .linkText {
+      color: $--app-component-color-rgb;
+      margin: 15px 0 50px 0;
+
+      a {
+        color: $--bs-primary-rgb;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 991.98px) {
-    .auth {
-        .leftPart {
-            width: calc(100% - 400px);
+  .auth {
+    .leftPart {
+      width: calc(100% - 400px);
 
-            .textBlock {
-                padding: 40px 40px 30px;
+      .textBlock {
+        padding: 40px 40px 30px;
 
-                h4 {
-                    font-size: 28px;
-                }
-
-                p {
-                    font-size: 16px;
-                }
-            }
+        h4 {
+          font-size: 28px;
         }
 
-        .rightPart {
-            width: 400px;
+        p {
+          font-size: 16px;
         }
+      }
     }
+
+    .rightPart {
+      width: 400px;
+    }
+  }
 }
 
 @media screen and (max-width: 767.98px) {
-    .auth {
-        .leftPart {
-            display: none;
-        }
-
-        .rightPart {
-            width: 100%;
-            padding: 40px;
-        }
+  .auth {
+    .leftPart {
+      display: none;
     }
+
+    .rightPart {
+      width: 100%;
+      padding: 40px;
+    }
+  }
 }

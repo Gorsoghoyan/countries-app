@@ -6,44 +6,44 @@ import useClickOutside from "./useClickOutside";
 import useUserContext from "./useUserContext";
 
 const useHeader = () => {
-    const [ open, setOpen ] = useState(false);
-    const { logoutUser } = useUserContext();
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const { logoutUser } = useUserContext();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const clickRef = useClickOutside(() => {
-        closeDropDown();
-    });
+  const clickRef = useClickOutside(() => {
+    closeDropDown();
+  });
 
-    function closeDropDown () {
-        open && setOpen(false);
-    }
+  function closeDropDown() {
+    open && setOpen(false);
+  }
 
-    const handleUserLogout = () => {
-        logoutUser();
-    };
+  const handleUserLogout = () => {
+    logoutUser();
+  };
 
-    const navigateHomePage = () => {
-        navigate("/admin/dashboard");
-    };
-    
-    const handleClick = () => {
-        !open && setOpen(true);
-    };
+  const navigateHomePage = () => {
+    navigate("/admin/dashboard");
+  };
 
-    const handleToggleSideBar = () => {
-        dispatch(toggleSideBar());
-    };
+  const handleClick = () => {
+    !open && setOpen(true);
+  };
 
-    return {
-        open,
-        clickRef,
-        handleToggleSideBar,
-        navigateHomePage,
-        handleUserLogout,
-        closeDropDown,
-        handleClick
-    };
+  const handleToggleSideBar = () => {
+    dispatch(toggleSideBar());
+  };
+
+  return {
+    open,
+    clickRef,
+    handleToggleSideBar,
+    navigateHomePage,
+    handleUserLogout,
+    closeDropDown,
+    handleClick,
+  };
 };
 
 export default useHeader;

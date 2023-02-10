@@ -1,123 +1,123 @@
 @import "../../sass/variables.module.scss";
 
 .header {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: $--app-header-height;
-    background: $--app-header-bg;
-    color: $--app-header-color;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    z-index: 1000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: $--app-header-height;
+  background: $--app-header-bg;
+  color: $--app-header-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000;
 
-    .leftPart {
-        .burger {
-            display: none;
-            font-size: 26px;
-            transition: all .3s ease;
-            cursor: pointer;
-        }
+  .leftPart {
+    .burger {
+      display: none;
+      font-size: 26px;
+      transition: all 0.3s ease;
+      cursor: pointer;
     }
+  }
 
-    .rightPart {
+  .rightPart {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    .searchBlock {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: $--app-header-input-bg;
+      border: $--app-header-input-border;
+      min-width: 220px;
+      height: 32px;
+      border-radius: 30px;
+      overflow: hidden;
+
+      .iconBlock {
+        height: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
         display: flex;
         align-items: center;
-        height: 100%;
-
-        .searchBlock {
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: $--app-header-input-bg;
-            border: $--app-header-input-border;
-            min-width: 220px;
-            height: 32px;
-            border-radius: 30px;
-            overflow: hidden;
-
-            .iconBlock {
-                height: 100%;
-                border: none;
-                outline: none;
-                background: transparent;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: $--bs-btn-color;
-                font-size: 18px;
-                padding: 0 10px;
-                transition: color 0.1s ease;
-                cursor: pointer;
-                &:hover {
-                    color: $--app-theme2;
-                }
-            }
+        justify-content: center;
+        color: $--bs-btn-color;
+        font-size: 18px;
+        padding: 0 10px;
+        transition: color 0.1s ease;
+        cursor: pointer;
+        &:hover {
+          color: $--app-theme2;
         }
+      }
+    }
+  }
+
+  .dropDownMenu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    min-width: 160px;
+    border-radius: 4px;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    background: $--app-component-dropdown-bg;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.1s ease;
+    cursor: auto;
+    &.open {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .dropDownMenu {
-        position: absolute;
-        right: 0;
-        top: 100%;
-        min-width: 160px;
-        border-radius: 4px;
-        box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
-        background: $--app-component-dropdown-bg;
-        display: flex;
-        flex-direction: column;
-        padding: 8px 0;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity .1s ease;
-        cursor: auto;
-        &.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        a {
-            text-decoration: none;
-            color: $--app-theme2;
-            font-size: 12px;
-            white-space: nowrap;
-            font-weight: 400;
-            padding: 8px 12px;
-            color: $--bs-dropdown-link-color;
-            &:hover {
-                background: $--app-component-dropdown-hover-bg;
-            }
-        }
+    a {
+      text-decoration: none;
+      color: $--app-theme2;
+      font-size: 12px;
+      white-space: nowrap;
+      font-weight: 400;
+      padding: 8px 12px;
+      color: $--bs-dropdown-link-color;
+      &:hover {
+        background: $--app-component-dropdown-hover-bg;
+      }
     }
+  }
 }
 
 @media screen and (max-width: 767px) {
-    .header {
-        height: $--app-header-mobile-height;
+  .header {
+    height: $--app-header-mobile-height;
+    display: block;
+
+    .leftPart {
+      height: $--app-header-height;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .burger {
         display: block;
-
-        .leftPart {
-            height: $--app-header-height;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            .burger {
-                display: block;
-            }
-        }
-
-        .rightPart {
-            height: $--app-header-height;
-            justify-content: space-between;
-
-            .searchBlock {
-                width: 80%;
-            }
-        }
+      }
     }
+
+    .rightPart {
+      height: $--app-header-height;
+      justify-content: space-between;
+
+      .searchBlock {
+        width: 80%;
+      }
+    }
+  }
 }

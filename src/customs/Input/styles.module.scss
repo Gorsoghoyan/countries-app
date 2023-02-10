@@ -1,34 +1,34 @@
 @import "../../sass/variables.module.scss";
 
 .search {
-    background: transparent;
-    outline: none;
-    border: none;
-    width: 100%;
-    height: 100%;
-    padding-left: 15px;
-    transition: padding-right 0.1s ease-in;
-    color: $--app-theme2;
-    &::placeholder {
-        color: $--app-header-input-plc-color;
-        font-weight: bold;
-    }
-    &:focus {
-        padding-right: 70px;
-    }
+  background: transparent;
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  padding-left: 15px;
+  transition: padding-right 0.1s ease-in;
+  color: $--app-theme2;
+  &::placeholder {
+    color: $--app-header-input-plc-color;
+    font-weight: bold;
+  }
+  &:focus {
+    padding-right: 70px;
+  }
 }
 
 .formInput {
-    width: 100%;
-    height: 45px;
-    border-radius: 6px;
-    outline: none;
-    border: 1px solid $--app-component-border-color;
-    background: transparent;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  width: 100%;
+  height: 45px;
+  border-radius: 6px;
+  outline: none;
+  border: 1px solid $--app-component-border-color;
+  background: transparent;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
-    &:focus {
-        box-shadow: 0 0 2px 4px rgba(37, 146, 255, 0.259);
-        border-color: $--register-btn-bg;
-    }
+  &:focus {
+    box-shadow: 0 0 2px 4px rgba(37, 146, 255, 0.259);
+    border-color: $--register-btn-bg;
+  }
 }

@@ -1,33 +1,33 @@
 import { useEffect, useState } from "react";
 
 const useGoTopArrow = () => {
-    const [ active, setActive ] = useState(false);
+  const [active, setActive] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (!active && window.pageYOffset > 600) {
-                setActive(true);
-            } else if (active && window.pageYOffset <= 600) {
-                setActive(false);
-            }
-        };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!active && window.pageYOffset > 600) {
+        setActive(true);
+      } else if (active && window.pageYOffset <= 600) {
+        setActive(false);
+      }
+    };
 
-        window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-        return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
     });
+  };
 
-    const handleClick = () => { 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    };
-
-    return {
-        active,
-        handleClick
-    };
+  return {
+    active,
+    handleClick,
+  };
 };
 
 export default useGoTopArrow;

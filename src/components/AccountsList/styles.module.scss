@@ -1,51 +1,72 @@
 @import "../../sass/variables.module.scss";
 
 .paper {
-    margin: 40px 0;
-    border-radius: 0 !important;
+  margin: 40px 0;
+  border-radius: 0 !important;
+  background: #2d353c !important;
 
-    .table {
-        th, tr, td {
-            background: $--app-header-bg;
-            border-color: rgb(75, 75, 75);
-            color: $--app-theme2;
-        }
-    }    
+  .table {
+    background: $--app-table-body-bg;
 
-    .box {
-        background: $--app-header-bg;
-        color: $--app-theme2;
-        padding: 20px;
-
-        .autoComplete {
-            
-        }
+    th,
+    tr,
+    td {
+      background: $--app-header-bg;
+      border-color: $--app-table-border-color;
+      color: $--app-theme2;
+      font-size: 15px;
     }
+  }
 
-    .pagination {
-        background: $--app-header-bg;
-        color: $--app-theme2;
+  .box {
+    background: $--app-table-top-bg;
+    color: $--app-theme2;
+    padding: 20px;
 
-        svg {
-            color: $--app-theme2;
-        }
+    .autoComplete {
+      svg {
+        color: $--app-theme2 !important;
+      }
+
+      label {
+        color: $--app-theme2 !important;
+      }
+
+      input {
+        color: $--app-theme2 !important;
+      }
+
+      fieldset {
+        border-color: $--app-theme2;
+        color: $--app-theme2 !important;
+      }
     }
+  }
 
-    .btn {
-        background: $--bs-body-bg;
-        color: $--bs-body-color;
-        &:hover {
-            background: $--bs-body-bg;
-        }
+  .pagination {
+    background: $--app-table-top-bg;
+    color: $--app-theme2;
+
+    svg {
+      color: $--app-theme2;
     }
+  }
+
+  .btn {
+    background: $--app-table-body-bg;
+    color: $--bs-body-color;
+    &:hover {
+      background: #2d353cb2;
+    }
+  }
 }
 
 .error {
-    text-align: center;
-    margin-top: 22%;
-    font-size: 30px;
+  // text-align: center;
+  // margin-top: 22%;
+  // font-size: 30px;
 }
 
 .loading {
-    margin: 22% auto 0 auto;
+  margin: 22% auto 0 auto;
 }

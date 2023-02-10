@@ -6,13 +6,17 @@ import SideBar from "../components/SideBar";
 import Error from "../pages/Error";
 
 const PrivateRoute = () => {
-    const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser);
 
-    return currentUser ? <>
-        <Header />
-        <SideBar />
-        <Outlet />
-    </> : <Error />
+  return currentUser ? (
+    <>
+      <Header />
+      <SideBar />
+      <Outlet />
+    </>
+  ) : (
+    <Error />
+  );
 };
 
 export default PrivateRoute;

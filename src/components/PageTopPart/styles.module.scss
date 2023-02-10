@@ -1,25 +1,25 @@
 @import "../../sass/variables.module.scss";
 
 .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    line-height: 1.35;
-    color: $--bs-body-color;
-    
-    h1 {
-        font-size: 24px;
-        font-weight: 500;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  line-height: 1.35;
+  color: $--bs-body-color;
 
-    .btnWrapper {
-        padding: 4px 10px;
-        background: transparent;
-        border-radius: 5px;
-        border: 1px solid $--bs-body-color;
-        color: $--bs-body-color;
-        text-decoration: none;
-        font-size: 14px;
-    }
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .btnWrapper {
+    padding: 4px 10px;
+    background: transparent;
+    border-radius: 5px;
+    border: 1px solid $--bs-body-color;
+    color: $--bs-body-color;
+    text-decoration: none;
+    font-size: 14px;
+  }
 }

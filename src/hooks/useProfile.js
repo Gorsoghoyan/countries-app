@@ -4,23 +4,23 @@ import { selectCurrentUser } from "../redux/slices/user/userSlice";
 import profilePhoto from "../images/profile_image.png";
 
 const useProfile = () => {
-    const [ file, setFile ] = useState("");
-    const [ photoURL, setPhotoURL ] = useState(profilePhoto);
-    const currentUser = useSelector(selectCurrentUser);
+  const [file, setFile] = useState("");
+  const [photoURL, setPhotoURL] = useState(profilePhoto);
+  const currentUser = useSelector(selectCurrentUser);
 
-    useEffect(() => {
-        currentUser?.photoURL && setPhotoURL(currentUser.photoURL);
-    }, [ currentUser ]);
+  useEffect(() => {
+    currentUser?.photoURL && setPhotoURL(currentUser.photoURL);
+  }, [currentUser]);
 
-    const handleFileChange = (e) => {
-        e.target.files[0] && setFile(e.target.files[0]);
-    };  
+  const handleFileChange = (e) => {
+    e.target.files[0] && setFile(e.target.files[0]);
+  };
 
-    return {
-        currentUser,
-        photoURL,
-        handleFileChange
-    };  
+  return {
+    currentUser,
+    photoURL,
+    handleFileChange,
+  };
 };
 
 export default useProfile;

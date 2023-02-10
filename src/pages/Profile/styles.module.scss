@@ -1,77 +1,81 @@
 @import "../../sass/variables.module.scss";
 
 .profile {
-    color: $--app-theme2;
+  color: $--app-theme2;
 
-   .topContainer {
-        position: relative;
-        background-image: url(../../images/profile-cover.jpg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        
-        .bg {
-            padding: 30px;
-            background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0, 0, 0, 0.818) 100%);
+  .topContainer {
+    position: relative;
+    background-image: url(../../images/profile-cover.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .bg {
+      padding: 30px;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0,
+        rgba(0, 0, 0, 0.818) 100%
+      );
+    }
+
+    .textBlock {
+      margin-left: 140px;
+
+      h2 {
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .fileUpload {
+        padding: 5px 6px;
+        color: $--bs-btn-color;
+        background: $--bs-btn-bg;
+        border: none;
+        outline: none;
+        border-radius: 2px;
+        font-size: 12px;
+        cursor: pointer;
+        &:hover {
+          background: $--bs-btn-hover-bg;
         }
 
-        .textBlock {
-            margin-left: 140px;
-
-            h2 {
-                font-weight: 600;
-                margin-bottom: 10px;
-            }
-
-            .fileUpload {
-                padding: 5px 6px;
-                color: $--bs-btn-color;
-                background: $--bs-btn-bg;
-                border: none;
-                outline: none;
-                border-radius: 2px;
-                font-size: 12px;
-                cursor: pointer;
-                &:hover {
-                    background: $--bs-btn-hover-bg; 
-                }
-
-                input {
-                    display: none;
-                }
-            }
+        input {
+          display: none;
         }
+      }
+    }
 
-        img {
-            float: left;
-            z-index: 10;
-            margin: -10px 0 -20px 0;
-            width: 120px;
-            height: 120px;
-            border-radius: 4px;
-            border: 3px $--app-component-bg solid;
-        }
-    }   
+    img {
+      float: left;
+      z-index: 10;
+      margin: -10px 0 -20px 0;
+      width: 120px;
+      height: 120px;
+      border-radius: 4px;
+      border: 3px $--app-component-bg solid;
+    }
+  }
 }
 
 @media screen and (max-width: 767px) {
-    .profile {
-        .topContainer {
-            .bg {
-                display: flex;
-                align-items: center;
-                padding: 20px;
-            }
+  .profile {
+    .topContainer {
+      .bg {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+      }
 
-            img {
-                margin: 0;
-                width: 80px;
-                height: 80px;
-            }
+      img {
+        margin: 0;
+        width: 80px;
+        height: 80px;
+      }
 
-            .textBlock {
-                margin-left: 20px;
-            }
-        }
+      .textBlock {
+        margin-left: 20px;
+      }
     }
+  }
 }

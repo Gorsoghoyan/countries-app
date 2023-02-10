@@ -61,6 +61,12 @@ $--app-component-bg: #2d353c;
 $--app-auth-text-paragraph-color: #bcbcbcd9;
 $--app-auth-register-text-color: rgb(255,255,255,.65);
 
+// users table
+$--app-table-top-bg: rgba(255, 255, 255, .1);
+$--app-table-body-bg: #2d353c;
+$--app-table-bg: #2d353c;
+$--app-table-border-color: #495057;
+
 // fonts 
 $--bs-font-sans-serif: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 $--bs-font-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;

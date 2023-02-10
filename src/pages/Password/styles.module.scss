@@ -1,75 +1,76 @@
 @import "../../sass/variables.module.scss";
 
 .container {
-    min-height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: white;
+  color: black;
+
+  h2 {
+    font-size: 30px;
+  }
+
+  form {
+    width: 500px;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    background: white;
-    color: black;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.171);
+    margin: 20px;
+    border-radius: 5px;
 
-    h2 {
-        font-size: 30px;
+    .error {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: red;
     }
 
-    form {
-        width: 500px;
-        display: flex;
-        flex-direction: column;
-        padding: 40px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.171);
-        margin: 20px;
-        border-radius: 5px;
-
-        .error {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: red;
-        }
-
-        p {
-            font-size: 17px;
-            font-weight: 400;
-        }
-
-        input, button {
-            border: none;
-            outline: none;  
-            border-radius: 5px;
-            height: 50px;
-        }
-
-        input {
-            border: 1px solid silver;
-            margin: 5px 0 20px 0;
-            padding: 0 20px;
-            font-size: 16px;
-            &::placeholder {
-                font-size: 16px;
-            }
-        }
-
-        button {
-            cursor: pointer;
-            font-size: 16px;
-            color: white;
-            background: $--app-theme1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    p {
+      font-size: 17px;
+      font-weight: 400;
     }
+
+    input,
+    button {
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      height: 50px;
+    }
+
+    input {
+      border: 1px solid silver;
+      margin: 5px 0 20px 0;
+      padding: 0 20px;
+      font-size: 16px;
+      &::placeholder {
+        font-size: 16px;
+      }
+    }
+
+    button {
+      cursor: pointer;
+      font-size: 16px;
+      color: white;
+      background: $--app-theme1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
 
 @media screen and (max-width: 767px) {
-    .container {
-        justify-content: flex-start;
-        padding-top: 30px;
+  .container {
+    justify-content: flex-start;
+    padding-top: 30px;
 
-        form {
-            width: 80%;
-        }
+    form {
+      width: 80%;
     }
+  }
 }

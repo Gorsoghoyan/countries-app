@@ -1,64 +1,64 @@
 @import "../../sass/variables.module.scss";
 
 .container {
-    position: relative;
-    display: flex;
-    
-    img {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-    }
+  position: relative;
+  display: flex;
 
-    &.row {
-        cursor: pointer;
-        justify-content: center;
-        align-items: center;
-        font-weight: 100;
-        margin-left: 25px;
-        height: 100%;
-        
-        .arrow {
-            display: block;
-        }
+  img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+  }
 
-        p {
-            margin: 0 5px 0 10px;
-            font-size: 13px;
-        }
-        
-        svg {
-            font-size: 14px;
-        }
-    }
-
-    &.column {
-        flex-direction: column;
-        justify-content: center;
-        font-size: 16px;
-        
-        img {
-            width: 35px;
-            height: 35px;
-            margin-bottom: 12px;
-        }
-    }
+  &.row {
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-weight: 100;
+    margin-left: 25px;
+    height: 100%;
 
     .arrow {
-        display: none;
+      display: block;
     }
+
+    p {
+      margin: 0 5px 0 10px;
+      font-size: 13px;
+    }
+
+    svg {
+      font-size: 14px;
+    }
+  }
+
+  &.column {
+    flex-direction: column;
+    justify-content: center;
+    font-size: 16px;
+
+    img {
+      width: 35px;
+      height: 35px;
+      margin-bottom: 12px;
+    }
+  }
+
+  .arrow {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 767px) {
-    .container {
-        &.row {
-            p {
-                display: none;
-            }
+  .container {
+    &.row {
+      p {
+        display: none;
+      }
 
-            img {
-                margin-right: 4px;
-            }
-        }
+      img {
+        margin-right: 4px;
+      }
     }
+  }
 }

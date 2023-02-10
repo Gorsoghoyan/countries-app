@@ -1,18 +1,18 @@
 @import "../../sass/variables.module.scss";
 
 .logo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    svg {
-        color: $--app-theme1;
-        margin-right: 10px;
-    }
+  svg {
+    color: $--app-theme1;
+    margin-right: 10px;
+  }
 
-    h2 {
-        span {
-            color: $--app-header-logo-silver-color;
-            font-weight: 100;
-        }
+  h2 {
+    span {
+      color: $--app-header-logo-silver-color;
+      font-weight: 100;
     }
+  }
 }
