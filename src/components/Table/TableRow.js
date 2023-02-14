@@ -1,9 +1,7 @@
-import s from "./styles.module.scss";
 
 function TableRow(props) {
-
   return (
-    <tr className={s.tableRow}>
+    <tr>
       {props.children}
     </tr>
   );

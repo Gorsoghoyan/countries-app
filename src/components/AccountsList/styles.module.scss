@@ -1,72 +1,162 @@
 @import "../../sass/variables.module.scss";
 
-.paper {
+.tableContainer {
+  width: 100%;
   margin: 40px 0;
-  border-radius: 0 !important;
-  background: #2d353c !important;
+  border-radius: 4px;
+  background: $--app-table-bg;
+  overflow: hidden;
+  // &::-webkit-scrollbar {
+  //   width: 8px;
+  //   height: 8px;
+  // }
 
-  .table {
+  // &::-webkit-scrollbar-thumb {
+  //   background-color: $--app-table-border-color;
+  //   border-radius: 10px;
+  //   // border: 2px solid transparent;
+  // }
+
+  // &::-webkit-scrollbar-track {
+  //   border-radius: 10px;  
+  //   background-color: $--app-table-body-bg; 
+  //   // margin: 10px;
+  // }
+
+  .searchAndAdd {
+    background: $--app-table-top-bg;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+  }
+  
+  table {
+    max-height: 300px;
+    width: 100%;
     background: $--app-table-body-bg;
+    border-collapse: collapse;  
+    overflow: auto;
+
+    tr {
+      border-bottom: 1px solid $--app-table-border-color;
+    }
+
+    th {
+      text-align: left;
+    }
+
+    th,
+    td {
+      padding: 16px;
+      white-space: nowrap;
+    }
 
     th,
     tr,
     td {
-      background: $--app-header-bg;
-      border-color: $--app-table-border-color;
       color: $--app-theme2;
-      font-size: 15px;
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.43;
+      letter-spacing: 0.01071em;
     }
   }
 
-  .box {
-    background: $--app-table-top-bg;
-    color: $--app-theme2;
-    padding: 20px;
-
-    .autoComplete {
-      svg {
-        color: $--app-theme2 !important;
-      }
-
-      label {
-        color: $--app-theme2 !important;
-      }
-
-      input {
-        color: $--app-theme2 !important;
-      }
-
-      fieldset {
-        border-color: $--app-theme2;
-        color: $--app-theme2 !important;
-      }
-    }
-  }
-
-  .pagination {
-    background: $--app-table-top-bg;
-    color: $--app-theme2;
-
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    
     svg {
-      color: $--app-theme2;
+      font-size: 20px;
+      color: #ff6767;
+      cursor: pointer;
+      &:nth-child(1) {
+        margin-right: 10px;
+        color: $--app-theme1;
+      }
     }
   }
 
-  .btn {
-    background: $--app-table-body-bg;
-    color: $--bs-body-color;
-    &:hover {
-      background: #2d353cb2;
+  .tablePagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 12px 0;
+    color: $--app-theme2;
+    background: $--app-table-top-bg;
+
+    div:nth-child(1),
+    div:nth-child(2),
+    div:nth-child(3) {
+      margin: 0 20px;
+    }
+
+    div:nth-child(1) {
+      span {
+        font-size: 14px;
+        cursor: text;
+      }
+
+      select {
+        padding: 3px 0 3px 0;
+        margin-left: 10px;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: $--app-theme2;
+        cursor: pointer;
+        &:focus {
+          background: rgba(0, 0, 0, 0.071);
+        }
+
+        option {
+          background: black;
+          width: 100px;
+        }
+      }
+    }
+    
+    div:nth-child(2) {
+      font-size: 14px;
+
+      span {
+        margin: 0 3px;
+        &:nth-child(2) {
+          margin: 0 6px;
+        }
+      }
+    }
+
+    div:nth-child(3) {
+      display: flex;
+      button {
+        font-size: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: $--app-theme2;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        &:hover {
+          background: rgba(192, 192, 192, 0.059);
+        }
+        &:disabled {
+          color: rgb(139, 139, 139);
+          cursor: auto;
+          &:hover {
+            background: transparent;
+          }
+        }
+        &:nth-child(1) {
+          margin-right: 15px;
+        }
+      }
     }
   }
-}
-
-.error {
-  // text-align: center;
-  // margin-top: 22%;
-  // font-size: 30px;
-}
-
-.loading {
-  margin: 22% auto 0 auto;
 }

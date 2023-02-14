@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
 import AccountsList from "../../components/AccountsList";
+import AccountsList2 from "../../components/AccountsList/indexx";
 import PageTopPart from "../../components/PageTopPart";
 import useAccounts from "../../hooks/useAccounts";
 import s from "./styles.module.scss";
@@ -13,13 +14,9 @@ function Accounts() {
 
   return (
     <div className={s.accounts}>
-      <PageTopPart
-        title="Accounts"
-        button={false}
-        // btnText={"Add user"}
-        // path={""}
-      />
+      <PageTopPart title="Accounts" button={false} />
       <AccountsList />
+      <AccountsList2 />
     </div>
   );
 }

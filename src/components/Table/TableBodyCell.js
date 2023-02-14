@@ -1,10 +1,7 @@
-import s from "./styles.module.scss";
-import c from "classnames";
 
 function TableBodyCell(props) {
-
   return (
-    <td className={s.tableBodyCell} {...props}>
+    <td {...props}>
       {props.children}
     </td>
   );

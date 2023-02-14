@@ -1,9 +1,8 @@
-import s from "./styles.module.scss";
 
 function TableBody(props) {
 
   return (
-    <tbody className={s.tableBody}>
+    <tbody>
       {props.children}
     </tbody>
   );
