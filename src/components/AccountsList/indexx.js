@@ -18,13 +18,13 @@ import { Autocomplete, Button, TextField, Typography } from "@mui/material";
 import s from "./styles.module.scss";
 
 const rows = [
-  {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
+  // {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
+  // {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
+  // {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
+  // {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
+  // {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
+  // {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
+  // {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
   {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
   {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
   {name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
@@ -83,7 +83,7 @@ function AccountsList() {
           options={rows}
           sx={{ width: 300 }}
           onChange={(e, v) => filterData(v)}
-          getOptionLabel={(rows) => rows.displayName || ""}
+          getOptionLabel={(rows) => rows.name || ""}
           renderInput={(params) => (
             <TextField {...params} size="small" label="Search Users" />
           )}

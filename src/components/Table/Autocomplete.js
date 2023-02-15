@@ -1,16 +1,65 @@
-import FormInput from "../FormInput";
+import Input from "../../customs/Input";
+import Spinner from "../Spinner";
+import AutocompleteItem from "./AutocompleteItem";
+import useAutoComplete from "../../hooks/useAutocomplete";
+import { IoMdArrowDropdown } from "react-icons/io";
+import s from "./styles.module.scss";
+import c from "classnames";
 
-function Autocomplete({ label }) {
+function Autocomplete({ className, placeholder, options, getOptionLabel, onChange }) {
+  const {
+    open,
+    value,
+    clickRef,
+    isPending,
+    filteredOptions,
+    openDropDown,
+    handleChange,
+    handleItemClick,
+  } = useAutoComplete(options, getOptionLabel, onChange);
+
   return (
-    <div>
-      <FormInput 
-        type={"text"}
-        plc={label}
-        id={Math.random()}
-        // onChange={}
+    <div
+      ref={clickRef}
+      className={c(s.autocomplete, className)}
+      onClick={openDropDown}
+    >
+      <Input 
+        attr={{ 
+          type: "text", 
+          value, 
+          placeholder, 
+          onChange: handleChange 
+        }} 
       />
-      <div>
-        
+      <IoMdArrowDropdown className={c(s.arrow, { [s.rotate]: open })} />
+      <div className={c(s.dropDown, { [s.open]: open })}>
+        {isPending && (
+          <div className={s.inputSpinner}>
+            <Spinner 
+              size={"20px"}
+              backColor="#00acac"
+              frontColor="white"
+              thickness={"2px"}
+            />
+          </div>
+        )}
+        {Boolean(filteredOptions.length) && (
+          filteredOptions.map((option, index) => (
+            <AutocompleteItem
+              key={index}
+              className={s.item}
+              optionName={getOptionLabel(option)}
+              onClick={(e) => handleItemClick(e, option)}
+            />
+        )))}
+        {Boolean(!filteredOptions.length) && (
+          <AutocompleteItem
+            className={s.item}
+            optionName={"No options"}
+            background={"#c7c7c7"}
+          />
+        )}
       </div>
     </div>
   );

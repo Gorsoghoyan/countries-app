@@ -5,6 +5,7 @@ import ProfileFlexBlock from "../ProfileFlexBlock";
 import useHeader from "../../hooks/useHeader";
 import DropDownItem from "./DropDownItem";
 import Input from "../../customs/Input";
+import Button from "../../customs/Button";
 import Logo from "../Logo";
 import s from "./styles.module.scss";
 import c from "classnames";
@@ -44,9 +45,9 @@ function Header() {
               placeholder: "Search...",
             }}
           />
-          <button className={s.iconBlock}>
+          <Button className={s.iconBlock}>
             <AiOutlineSearch />
-          </button>
+          </Button>
         </form>
         <ProfileFlexBlock flex="row" clickRef={clickRef} onClick={handleClick}>
           <div className={c(s.dropDownMenu, { [s.open]: open })}>

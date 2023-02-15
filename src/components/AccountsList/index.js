@@ -26,13 +26,23 @@ const rows = [
 ];
 
 function AccountsList() {
-  const { rowsPerPage, page, handleChangePage, handleChangeRowsPerPage } = useAccountsList();
+  const { 
+    rows, 
+    page, 
+    rowsPerPage, 
+    filterData, 
+    handleChangePage, 
+    handleChangeRowsPerPage 
+  } = useAccountsList();
 
   return (
     <TableContainer className={s.tableContainer}>
       <Stack className={s.searchAndAdd}>
-        <Autocomplete 
-          label={"Search user"}
+        <Autocomplete
+          options={rows}
+          placeholder={"Search user"}
+          onChange={(option) => filterData(option)}
+          getOptionLabel={(row) => row.displayName || ""}
         />
         <Button />
       </Stack>
@@ -54,7 +64,7 @@ function AccountsList() {
               <TableBodyCell>{row.email}</TableBodyCell>
               <TableBodyCell>
                 <Stack className={s.actions}>
-                  <MdModeEditOutline/>
+                  <MdModeEditOutline />
                   <MdDelete />
                 </Stack>
               </TableBodyCell>
@@ -62,14 +72,14 @@ function AccountsList() {
           ))}
         </TableBody>
       </Table>
-      <TablePagination 
+      <TablePagination
         className={s.tablePagination}
         page={page}
         count={rows.length}
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[5, 15, 30]}
         onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage} 
+        onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </TableContainer>
   );

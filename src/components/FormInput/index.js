@@ -1,14 +1,23 @@
 import Input from "../../customs/Input";
 import s from "./styles.module.scss";
 
-function FormInput({ plc, type, onChange, id, name, autoFocus }) {
+function FormInput({
+  id,
+  plc,
+  type,
+  name,
+  onChange,
+  autoFocus,
+}) {
   return (
     <div className={s.wrapper}>
       <Input
         type="formInput"
         attr={{ type, onChange, id, name, autoFocus, required: true }}
       />
-      <label htmlFor={id}>{plc}</label>
+      <label htmlFor={id}>
+        {plc}
+      </label>
     </div>
   );
 }
