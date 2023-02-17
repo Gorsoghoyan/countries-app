@@ -5,12 +5,16 @@ import {
   toggleSideBar,
 } from "../redux/slices/sideBar/sideBarSlice";
 import { selectCurrentUser } from "../redux/slices/user/userSlice";
+import useClickOutside from "./useClickOutside";
+import useScrollHandler from "./useScrollHandler";
 
 const useSideBar = () => {
   const [open, setOpen] = useState(false);
   const currentUser = useSelector(selectCurrentUser);
   const openSideBar = useSelector(selectSideBarOpen);
+  const clickRef = useClickOutside(handleClickRef);
   const dispatch = useDispatch();
+  useScrollHandler(handleScroll);
 
   useEffect(() => {
     if (window.innerWidth > 767) return;
@@ -21,12 +25,28 @@ const useSideBar = () => {
     }
   }, [openSideBar]);
 
-  const closeSideBar = () => {
-    dispatch(toggleSideBar());
+  const dispatchSideBar = (toggle) => {
+    dispatch(toggleSideBar(toggle));
   };
+
+  const closeSideBar = () => {
+    dispatchSideBar(false);
+  };
+
+  function handleClickRef() {
+    if (!openSideBar) return;
+    dispatchSideBar(false);
+  }
+
+  function handleScroll(e) {
+    if (openSideBar) {
+      dispatchSideBar(false);
+    }
+  }
 
   return {
     open,
+    clickRef,
     currentUser,
     closeSideBar,
   };

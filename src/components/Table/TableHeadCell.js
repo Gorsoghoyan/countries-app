@@ -1,7 +1,7 @@
 
 function TableHeadCell(props) {
   return (
-    <th {...props}>
+    <th {...props} style={{ minWidth: props.minWidth }}>
       {props.children}
     </th>
   );

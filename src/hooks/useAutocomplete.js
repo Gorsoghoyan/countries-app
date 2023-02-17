@@ -3,6 +3,7 @@ import useClickOutside from "./useClickOutside";
 
 const useAutoComplete = (options, getOptionLabel, onChange) => {
   const [open, setOpen] = useState(false);
+  const [find, setFind] = useState(false);
   const [value, setValue] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [isPending, startTransition] = useTransition()
@@ -24,6 +25,10 @@ const useAutoComplete = (options, getOptionLabel, onChange) => {
   };
 
   const handleChange = (e) => {
+    if (find && !e.target.value) {
+      onChange();
+      setFind(false);  
+    }
     startTransition(() => {
       setValue(e.target.value);
     });
@@ -32,14 +37,17 @@ const useAutoComplete = (options, getOptionLabel, onChange) => {
   const handleItemClick = (e, option) => {
     e.stopPropagation();
     setOpen(false);
+    if (find) return;
+    setFind(true);
     startTransition(() => {
       setValue(getOptionLabel(option));
     });
-    onChange(option);
+    onChange(e, option);
   }
 
   return {
     open,
+    find,
     value,
     clickRef,
     isPending,

@@ -7,71 +7,72 @@ import TableBody from "../Table/TableBody";
 import Autocomplete from "../Table/Autocomplete";
 import TableBodyCell from "../Table/TableBodyCell";
 import TableHeadCell from "../Table/TableHeadCell";
+import ComponentLoading from "../ComponentLoading";
 import TableContainer from "../Table/TableContainer";
 import TablePagination from "../Table/TablePagination";
 import useAccountsList from "../../hooks/useAccountsList";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import { columns } from "./columns";
 import s from "./styles.module.scss";
-
-const rows = [
-  { name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  { name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  { name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  { name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  { name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  { name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  { name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-  { name: "Gor Soghoyan", email: "soghoyangor99@gmail.com", id: Math.random(), },
-];
+import ErrorMessage from "../ErrorMessage";
 
 function AccountsList() {
-  const { 
-    rows, 
-    page, 
-    rowsPerPage, 
-    filterData, 
-    handleChangePage, 
-    handleChangeRowsPerPage 
+  const {
+    page,
+    rows,
+    error,
+    loading,
+    rowsPerPage,
+    filterData,
+    deleteUser,
+    handleChangePage,
+    handleChangeRowsPerPage,
   } = useAccountsList();
 
   return (
     <TableContainer className={s.tableContainer}>
       <Stack className={s.searchAndAdd}>
         <Autocomplete
+          className={s.autocomplete}
           options={rows}
           placeholder={"Search user"}
-          onChange={(option) => filterData(option)}
+          onChange={(e, v) => filterData(v)}
           getOptionLabel={(row) => row.displayName || ""}
         />
         <Button />
       </Stack>
-      <Table>
-        <TableHead>
-          <TableRow>
-            {columns.map((column) => (
-              <TableHeadCell key={column.id}>
-                {column.title}
-              </TableHeadCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row, index) => (
-            <TableRow key={row.id}>
-              <TableBodyCell>{index + 1}</TableBodyCell>
-              <TableBodyCell>{row.name}</TableBodyCell>
-              <TableBodyCell>{row.email}</TableBodyCell>
-              <TableBodyCell>
-                <Stack className={s.actions}>
-                  <MdModeEditOutline />
-                  <MdDelete />
-                </Stack>
-              </TableBodyCell>
+      {loading ? 
+        <Stack className={s.loading}>
+          <ComponentLoading />
+        </Stack> : error ? 
+        <ErrorMessage error={error} /> :
+        <Table>
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableHeadCell key={column.id}>
+                  {column.title}
+                </TableHeadCell>
+              ))}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {rows.map((row, index) => (
+              <TableRow key={row.id}>
+                <TableBodyCell>{index + 1}</TableBodyCell>
+                <TableBodyCell>{row.displayName}</TableBodyCell>
+                <TableBodyCell>{row.email}</TableBodyCell>
+                <TableBodyCell>
+                  <Stack className={s.actions}>
+                    <MdModeEditOutline />
+                    <MdDelete onClick={() => deleteUser(row.id)} />
+                  </Stack>
+                </TableBodyCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      }
       <TablePagination
         className={s.tablePagination}
         page={page}

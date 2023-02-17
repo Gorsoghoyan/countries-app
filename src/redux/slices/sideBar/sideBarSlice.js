@@ -8,8 +8,8 @@ export const sideBarSlice = createSlice({
   name: "sidebar",
   initialState,
   reducers: {
-    toggleSideBar: (state) => {
-      state.open = !state.open;
+    toggleSideBar: (state, action) => {
+      state.open = action.payload;
     },
   },
 });

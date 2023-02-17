@@ -1,3 +1,9 @@
 .accounts {
   padding: 20px 30px;
 }
+
+@media screen and (max-width: 767px) {
+  .accounts {
+    padding: 20px 10px;
+  }
+}

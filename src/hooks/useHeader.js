@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toggleSideBar } from "../redux/slices/sideBar/sideBarSlice";
+import { 
+  selectSideBarOpen, 
+  toggleSideBar 
+} from "../redux/slices/sideBar/sideBarSlice";
 import useClickOutside from "./useClickOutside";
 import useUserContext from "./useUserContext";
 
 const useHeader = () => {
   const [open, setOpen] = useState(false);
   const { logoutUser } = useUserContext();
+  const sideBarOpen = useSelector(selectSideBarOpen);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -32,7 +36,8 @@ const useHeader = () => {
   };
 
   const handleToggleSideBar = () => {
-    dispatch(toggleSideBar());
+    if (sideBarOpen) return;
+    setTimeout(() => dispatch(toggleSideBar(true)), 0);
   };
 
   return {

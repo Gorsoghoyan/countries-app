@@ -14,7 +14,7 @@ function Accounts() {
 
   return (
     <div className={s.accounts}>
-      <PageTopPart title="Accounts" button={false} />
+      <PageTopPart title="Accounts..." />
       <AccountsList />
       <AccountsList2 />
     </div>

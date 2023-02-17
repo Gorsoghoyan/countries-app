@@ -2,6 +2,7 @@
 
 .autocomplete {
   position: relative;
+  width: 280px;
 
   input {
     width: 100%;
@@ -46,6 +47,8 @@
     flex-direction: column;
     overflow: auto;
     border-radius: 0 0 5px 5px; 
+    z-index: 1;
+    background: $--app-theme2;
     &.open {
       display: block;
     }

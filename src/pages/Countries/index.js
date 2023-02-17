@@ -1,7 +1,10 @@
 import PageTopPart from "../../components/PageTopPart";
+import useCountries from "../../hooks/useCountries";
 import s from "./styles.module.scss";
 
 function Countries() {
+  const { } = useCountries();
+
   return (
     <div className={s.countries}>
       <PageTopPart
