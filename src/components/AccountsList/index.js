@@ -1,7 +1,9 @@
 import Table from "../Table";
+import Paper from "../Table/Paper";
 import Stack from "../Table/Stack";
 import TableRow from "../Table/TableRow";
 import Button from "../../customs/Button";
+import ErrorMessage from "../ErrorMessage";
 import TableHead from "../Table/TableHead";
 import TableBody from "../Table/TableBody";
 import Autocomplete from "../Table/Autocomplete";
@@ -12,9 +14,9 @@ import TableContainer from "../Table/TableContainer";
 import TablePagination from "../Table/TablePagination";
 import useAccountsList from "../../hooks/useAccountsList";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
+import { AiOutlinePlus } from "react-icons/ai";
 import { columns } from "./columns";
 import s from "./styles.module.scss";
-import ErrorMessage from "../ErrorMessage";
 
 function AccountsList() {
   const {
@@ -30,7 +32,7 @@ function AccountsList() {
   } = useAccountsList();
 
   return (
-    <TableContainer className={s.tableContainer}>
+    <Paper className={s.paper}>
       <Stack className={s.searchAndAdd}>
         <Autocomplete
           className={s.autocomplete}
@@ -39,50 +41,67 @@ function AccountsList() {
           onChange={(e, v) => filterData(v)}
           getOptionLabel={(row) => row.displayName || ""}
         />
-        <Button />
+        <Button className={s.addButton}>
+          <AiOutlinePlus />Add
+        </Button>
       </Stack>
-      {loading ? 
-        <Stack className={s.loading}>
+      {loading ?
+        <Stack className={s.flex}>
           <ComponentLoading />
-        </Stack> : error ? 
-        <ErrorMessage error={error} /> :
-        <Table>
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableHeadCell key={column.id}>
-                  {column.title}
-                </TableHeadCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row, index) => (
-              <TableRow key={row.id}>
-                <TableBodyCell>{index + 1}</TableBodyCell>
-                <TableBodyCell>{row.displayName}</TableBodyCell>
-                <TableBodyCell>{row.email}</TableBodyCell>
-                <TableBodyCell>
-                  <Stack className={s.actions}>
-                    <MdModeEditOutline />
-                    <MdDelete onClick={() => deleteUser(row.id)} />
-                  </Stack>
-                </TableBodyCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        </Stack> : error ?
+          <Stack className={s.flex}>
+            <ErrorMessage
+              error={error}
+              color={"#ffffff7e"}
+              fontSize={20}
+            />
+          </Stack> :
+          <TableContainer className={s.tableContainer}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableHeadCell key={column.id}>
+                      {column.title}
+                    </TableHeadCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row, index) => (
+                  <TableRow key={row.id}>
+                    <TableBodyCell data-label={columns[0].title}>
+                      {index + 1}
+                    </TableBodyCell>
+                    <TableBodyCell data-label={columns[1].title}>
+                      {row.displayName}
+                    </TableBodyCell>
+                    <TableBodyCell data-label={columns[2].title}>
+                      {row.email}
+                    </TableBodyCell>
+                    <TableBodyCell data-label={columns[3].title}>
+                      <Stack className={s.actions}>
+                        <MdModeEditOutline />
+                        <MdDelete onClick={() => deleteUser(row.id)} />
+                      </Stack>
+                    </TableBodyCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
       }
       <TablePagination
         className={s.tablePagination}
         page={page}
+        rows={rows}
         count={rows.length}
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[5, 15, 30]}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-    </TableContainer>
+    </Paper>
   );
 }
 

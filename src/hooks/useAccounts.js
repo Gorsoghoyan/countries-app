@@ -8,13 +8,13 @@ const useAccounts = () => {
   const currentUser = useSelector(selectCurrentUser);
   const { getSubUsers, error, loading } = useUserContext();
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const res = await getSubUsers();
-      setSubUsers(res);
-    };
-    getUsers();
-  }, []);
+  // useEffect(() => {
+  //   const getUsers = async () => {
+  //     const res = await getSubUsers();
+  //     setSubUsers(res);
+  //   };
+  //   getUsers();
+  // }, []);
 
   return {
     currentUser,

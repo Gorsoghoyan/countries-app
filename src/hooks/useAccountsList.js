@@ -1,42 +1,91 @@
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, endBefore, getDoc, getDocs, limit, startAt, limitToLast, orderBy, query, startAfter } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { fs } from "../firebase";
 import Swal from "sweetalert2";
 
 const useAccountsList = () => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rows, setRows] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-  const empCollectionRef = collection(fs, "subUsers");
+  const [rowsPerPage, setRowsPerPage] = useState(2);
+  const [lastVisible, setLastVisible] = useState(null);
+  const subUsersCollection = collection(fs, "subUsers");
 
   useEffect(() => {
-    getUsers();
+    // getUsers();
+    console.log(lastVisible)
   }, []);
 
-  async function getUsers() {
-    setLoading(true);
-    try {
-      const data = await getDocs(empCollectionRef);
-      if (!data.docs.length) throw new Error("There are no sub-users yet.");
-      setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      setLoading(false);
-      setError("");
-    } catch (error) {
-      setLoading(false);
-      setError(error.message);
-    }
-  }
+  // async function getUsers() {
+  //   setLoading(true);
+  //   try {
+  //     let quer = null;
+  //     if (lastVisible) {
+  //       quer = query(empCollectionRef, orderBy("displayName"), startAfter(lastVisible), limit(2 * rowsPerPage));
+  //     } else {
+  //       quer = query(empCollectionRef, orderBy("email"), limit(2));
+  //     }
+  //     const documentSnapshots = await getDocs(quer);
+  //     if (!documentSnapshots.docs.length) throw new Error("There are no sub-users yet.");
+  //     setRows(documentSnapshots.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //     setLastVisible(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
+  //     setLoading(false);
+  //     setError("");
+  //   } catch (error) {
+  //     setLoading(false);
+  //     setError(error.message);
+  //   }
+  // }
 
-  const handleChangePage = (event, newPage) => {
-    console.log(event.target, newPage);
-    setPage(newPage);
+  useEffect(() => {
+    const getUsers = async () => {
+      console.log(page)
+      const start = page * rowsPerPage - rowsPerPage;
+      const usersQuery = query(subUsersCollection, orderBy("email"), startAt(start), limit(rowsPerPage));
+      const snapshot = await getDocs(usersQuery);
+      const rows = snapshot.docs.map(doc => doc.data());
+      const snapshotAllUsers = await getDocs(subUsersCollection);
+      setRows(rows)
+      console.log({ 
+          dbItems: rows,
+          totalItemCount: snapshotAllUsers.size
+      })
+    }
+    getUsers();
+  }, [page, rowsPerPage])
+
+
+  const handleChangePage = (event, item, arrow) => {
+    if (arrow === "next") {
+      setPage(page + 1)
+      // getUsers();
+    } else {
+      setPage(page - 1)
+      // getUsers();
+    }
+    // }
+    // if (arrow === 'next') {
+    //   const fetchNextData = async () => {
+    //     const quere = query(empCollectionRef, orderBy("email"), startAfter(item.email), limit(2))
+    //     const documentSnapshots = await getDocs(quere);
+    //     setRows(documentSnapshots.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    //     setPage(page + 1)
+    //   };
+    //   fetchNextData();
+    // } else {
+    //   const fetchPrevData = async () => {
+    //     const quere = query(empCollectionRef, orderBy("email"), endBefore(item.email), limitToLast(2))
+    //     const documentSnapshots = await getDocs(quere);
+    //     setRows(documentSnapshots.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    //     setPage(page - 1)
+    //   };
+    //   fetchPrevData();
+    // }
   };
 
-  const handleChangeRowsPerPage = (event) => {
-    console.log(event.target.value)
-    setRowsPerPage(+event.target.value);
+  const handleChangeRowsPerPage = (newPerPage) => {
+    setRowsPerPage(newPerPage);
     setPage(0);
   };
 
@@ -46,7 +95,7 @@ const useAccountsList = () => {
       const userDoc = doc(fs, "subUsers", id);
       await deleteDoc(userDoc);
       Swal.fire("Deleted!", "Your file has been deleted.", "success");
-      getUsers();
+      // getUsers();
       setLoading(false);
       setError("");
     } catch (error) {
@@ -75,7 +124,7 @@ const useAccountsList = () => {
     if (v) {
       setRows([v]);
     } else {
-      getUsers();
+      // getUsers();
     }
   };
 

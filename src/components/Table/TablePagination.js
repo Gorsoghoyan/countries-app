@@ -1,11 +1,12 @@
-import Select from "../../customs/Select";
+import SelectBox from "../SelectBox";
 import Button from "../../customs/Button";
-import Option from "../../customs/Select/Option";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import s from "./styles.module.scss";
 
 function TablePagination({
   className,
   page,
+  rows,
   count,
   rowsPerPage,
   onPageChange,
@@ -14,30 +15,24 @@ function TablePagination({
 }) {
   return (
     <div className={className}>
-      <div>
-        <label>
-          <span>Rows per page:</span>
-          <Select
-            onChange={onRowsPerPageChange}
-            value={rowsPerPage || rowsPerPageOptions[0]}
-          >
-            {rowsPerPageOptions?.map((option, index) => (
-              <Option key={index}>{option}</Option>
-            ))}
-          </Select>
-        </label>
+      <div className={s.selectPart}>
+        <span>Rows per page:</span>
+        <SelectBox 
+          options={rowsPerPageOptions} 
+          onRowsPerPageChange={onRowsPerPageChange}
+        />
       </div>
-      <div>
+      <div className={s.infoPart}>
         <p>{}<span>-</span>{16}<span>of</span>{count}</p>
       </div>
-      <div>
+      <div className={s.arrowsPart}>
         <Button
-          onClick={() => onPageChange()}
-          disabled={page === 0 || count < rowsPerPage}
+          onClick={(e) => onPageChange(e, rows[0], "prev")}
+          // disabled={page === 0 || count < rowsPerPage}
         ><IoIosArrowBack /></Button>
         <Button
-          onClick={() => onPageChange()}
-          disabled={page === count || count < rowsPerPage}
+          onClick={(e) => onPageChange(e, rows[rows.length - 1], "next")}
+          // disabled={page === count || count < rowsPerPage}
         ><IoIosArrowForward /></Button>
       </div>
     </div>

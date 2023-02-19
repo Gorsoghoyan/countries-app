@@ -60,7 +60,8 @@
       color: black;
       cursor: pointer;
       &:hover {
-        background: #c7c7c7;
+        background: rgb(66 74 80);
+        color: $--app-theme2;
       }
     }
 
@@ -69,6 +70,71 @@
       display: flex;
       justify-content: center;
       padding-top: 5px;
+    }
+  }
+}
+
+.selectPart,
+.infoPart,
+.arrowsPart {
+  margin: 0 20px;
+}
+
+.selectPart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    font-size: 14px;
+    cursor: default;
+  }
+}
+
+.infoPart {
+  font-size: 14px;
+
+  span {
+    margin: 0 3px;
+
+    &:nth-child(2) {
+      margin: 0 6px;
+    }
+  }
+}
+
+.arrowsPart {
+  display: flex;
+
+  button {
+    font-size: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: $--app-theme2;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: rgba(192, 192, 192, 0.059);
+    }
+
+    &:disabled {
+      color: rgb(139, 139, 139);
+      cursor: auto;
+
+      &:hover {
+        background: transparent;
+      }
+    }
+
+    &:nth-child(1) {
+      margin-right: 15px;
     }
   }
 }
