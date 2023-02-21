@@ -25,6 +25,7 @@ function AccountsList() {
     error,
     loading,
     rowsPerPage,
+    allUsersSize,
     filterData,
     deleteUser,
     handleChangePage,
@@ -45,59 +46,62 @@ function AccountsList() {
           <AiOutlinePlus />Add
         </Button>
       </Stack>
-      {loading ?
+      {loading ? (
         <Stack className={s.flex}>
           <ComponentLoading />
-        </Stack> : error ?
-          <Stack className={s.flex}>
-            <ErrorMessage
-              error={error}
-              color={"#ffffff7e"}
-              fontSize={20}
-            />
-          </Stack> :
-          <TableContainer className={s.tableContainer}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  {columns.map((column) => (
-                    <TableHeadCell key={column.id}>
-                      {column.title}
-                    </TableHeadCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row, index) => (
-                  <TableRow key={row.id}>
-                    <TableBodyCell data-label={columns[0].title}>
-                      {index + 1}
-                    </TableBodyCell>
-                    <TableBodyCell data-label={columns[1].title}>
-                      {row.displayName}
-                    </TableBodyCell>
-                    <TableBodyCell data-label={columns[2].title}>
-                      {row.email}
-                    </TableBodyCell>
-                    <TableBodyCell data-label={columns[3].title}>
-                      <Stack className={s.actions}>
-                        <MdModeEditOutline />
-                        <MdDelete onClick={() => deleteUser(row.id)} />
-                      </Stack>
-                    </TableBodyCell>
-                  </TableRow>
+        </Stack>
+      ) : error ? (
+        <Stack className={s.flex}>
+          <ErrorMessage
+            error={error}
+            color={"#ffffff7e"}
+            fontSize={20}
+          />
+        </Stack>
+      ) : (
+        <TableContainer className={s.tableContainer}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableHeadCell key={column.id}>
+                    {column.title}
+                  </TableHeadCell>
                 ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row, index) => (
+                <TableRow key={row.id}>
+                  <TableBodyCell data-label={columns[0].title}>
+                    {index + 1}
+                  </TableBodyCell>
+                  <TableBodyCell data-label={columns[1].title}>
+                    {row.displayName}
+                  </TableBodyCell>
+                  <TableBodyCell data-label={columns[2].title}>
+                    {row.email}
+                  </TableBodyCell>
+                  <TableBodyCell data-label={columns[3].title}>
+                    <Stack className={s.actions}>
+                      <MdModeEditOutline />
+                      <MdDelete onClick={() => deleteUser(row.id)} />
+                    </Stack>
+                  </TableBodyCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )
       }
       <TablePagination
         className={s.tablePagination}
         page={page}
         rows={rows}
-        count={rows.length}
+        count={allUsersSize}
         rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={[5, 15, 30]}
+        rowsPerPageOptions={[5, 10, 25]}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />

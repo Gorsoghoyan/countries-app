@@ -1,13 +1,15 @@
 import { useEffect, useState, useTransition } from "react";
 import useClickOutside from "./useClickOutside";
+import useScrollHandler from "./useScrollHandler";
 
 const useAutoComplete = (options, getOptionLabel, onChange) => {
   const [open, setOpen] = useState(false);
   const [find, setFind] = useState(false);
   const [value, setValue] = useState("");
-  const [filteredOptions, setFilteredOptions] = useState([]);
   const [isPending, startTransition] = useTransition()
+  const [filteredOptions, setFilteredOptions] = useState([]);
   const clickRef = useClickOutside(closeDropDown);
+  useScrollHandler(closeDropDown);
 
   useEffect(() => {
     if (!options.length && !value) return;
@@ -24,13 +26,13 @@ const useAutoComplete = (options, getOptionLabel, onChange) => {
     setOpen(true);
   };
 
-  const handleChange = (e) => {
-    if (find && !e.target.value) {
+  const handleChange = (value) => {
+    if (find && !value) {
       onChange();
       setFind(false);  
     }
     startTransition(() => {
-      setValue(e.target.value);
+      setValue(value);
     });
   };
 

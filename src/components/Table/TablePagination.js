@@ -17,23 +17,33 @@ function TablePagination({
     <div className={className}>
       <div className={s.selectPart}>
         <span>Rows per page:</span>
-        <SelectBox 
-          options={rowsPerPageOptions} 
+        <SelectBox
+          options={rowsPerPageOptions}
           onRowsPerPageChange={onRowsPerPageChange}
         />
       </div>
       <div className={s.infoPart}>
-        <p>{}<span>-</span>{16}<span>of</span>{count}</p>
+        <p>
+          {page*rowsPerPage-rowsPerPage+1}<span>-</span>
+          {page*rowsPerPage-rowsPerPage+rowsPerPage > count 
+            ? count : 
+            page*rowsPerPage-rowsPerPage+rowsPerPage
+          }<span>of</span>{count}
+        </p>
       </div>
       <div className={s.arrowsPart}>
         <Button
-          onClick={(e) => onPageChange(e, rows[0], "prev")}
-          // disabled={page === 0 || count < rowsPerPage}
-        ><IoIosArrowBack /></Button>
+          onClick={(e) => onPageChange("prev")}
+          disabled={page === 1 || count < rowsPerPage}
+        >
+          <IoIosArrowBack />
+        </Button>
         <Button
-          onClick={(e) => onPageChange(e, rows[rows.length - 1], "next")}
-          // disabled={page === count || count < rowsPerPage}
-        ><IoIosArrowForward /></Button>
+          onClick={(e) => onPageChange("next")}
+          disabled={page * rowsPerPage >= count || count < rowsPerPage}
+        >
+          <IoIosArrowForward />
+        </Button>
       </div>
     </div>
   );

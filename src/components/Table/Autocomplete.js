@@ -1,8 +1,9 @@
-import Input from "../../customs/Input";
 import Spinner from "../Spinner";
+import Input from "../../customs/Input";
 import AutocompleteItem from "./AutocompleteItem";
 import useAutoComplete from "../../hooks/useAutocomplete";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { AiOutlineClose } from "react-icons/ai";
 import s from "./styles.module.scss";
 import c from "classnames";
 
@@ -30,20 +31,25 @@ function Autocomplete({ className, placeholder, options, getOptionLabel, onChang
           type: "text",
           value,
           placeholder,
-          onChange: handleChange
+          onChange: (e) => handleChange(e.target.value)
         }}
       />
-      <IoMdArrowDropdown className={c(s.arrow, { [s.rotate]: open })} />
+      <div className={s.icons}>
+        <AiOutlineClose
+          className={c(s.cross, { [s.active]: find })}
+          onClick={() => handleChange("")}
+        />
+        <IoMdArrowDropdown className={c(s.arrow, { [s.rotate]: open })} />
+      </div>
       <div className={c(s.dropDown, { [s.open]: open })}>
         {isPending && (
-          <div className={s.inputSpinner}>
-            <Spinner
-              size={"20px"}
-              backColor="#00acac"
-              frontColor="white"
-              thickness={"2px"}
-            />
-          </div>
+          <Spinner
+            className={s.inputSpinner}
+            size={"20px"}
+            backColor="#00acac"
+            frontColor="transparent"
+            thickness={"2px"}
+          />
         )}
         {Boolean(filteredOptions.length) && (
           filteredOptions.map((option) => (
@@ -54,7 +60,8 @@ function Autocomplete({ className, placeholder, options, getOptionLabel, onChang
               optionName={getOptionLabel(option)}
               onClick={(e) => handleItemClick(e, option)}
             />
-          )))}
+          )
+        ))}
         {Boolean(!filteredOptions.length) && (
           <AutocompleteItem
             className={s.item}

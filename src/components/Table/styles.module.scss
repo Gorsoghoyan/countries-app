@@ -6,7 +6,7 @@
 
   input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 75px 10px 10px;
     background: transparent;
     color: white;
     border: 1px solid silver;
@@ -21,18 +21,34 @@
     }
   }
 
-  .arrow {
+  .icons {
+    width: 60px;
     position: absolute;
-    top: 26%;
-    right: 5%;
-    transform: translate(-5%, -26%);
-    font-size: 16px;
-    transform-origin: center;
-    transform: rotate(0deg);
-    transition: transform 0.2s ease;
-    cursor: pointer;
-    &.rotate {
-      transform: rotate(-180deg);
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    .cross {
+      font-size: 14px;
+      font-weight: bold;
+      display: none;
+      cursor: pointer;
+      &.active {
+        display: block;
+      }
+    }
+
+    .arrow {
+      font-size: 16px;
+      transform-origin: center;
+      transform: rotate(0deg);
+      transition: transform 0.2s ease;
+      cursor: pointer;
+      &.rotate {
+        transform: rotate(-180deg);
+      }
     }
   }
 
@@ -60,16 +76,14 @@
       color: black;
       cursor: pointer;
       &:hover {
-        background: rgb(66 74 80);
-        color: $--app-theme2;
+        background: rgb(232, 232, 232);
       }
     }
 
     .inputSpinner {
-      background: $--app-theme2;
-      display: flex;
-      justify-content: center;
-      padding-top: 5px;
+      position: absolute;
+      right: 10px;
+      top: 10px;
     }
   }
 }
@@ -135,6 +149,24 @@
 
     &:nth-child(1) {
       margin-right: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .selectPart,
+  .infoPart,
+  .arrowsPart {
+    margin: 0 10px;
+  }
+
+  .autocomplete {
+    input {
+      padding: 10px 55px 10px 10px;
+    }
+
+    .icons {
+      width: 50px;
     }
   }
 }

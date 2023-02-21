@@ -17,10 +17,43 @@ import { columns } from "./columns";
 import { Autocomplete, Button, TextField, Typography } from "@mui/material";
 import s from "./styles.module.scss";
 
+const rows = [
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+  {id: Math.random(), email: "soghoyangor@gmail.com", password: "aosdona"},
+]
+
 function AccountsList() {
   const {
     page,
-    rows,
+    // rows,
     rowsPerPage,
     loading,
     error,
