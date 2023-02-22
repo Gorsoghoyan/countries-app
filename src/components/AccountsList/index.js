@@ -13,6 +13,7 @@ import ComponentLoading from "../ComponentLoading";
 import TableContainer from "../Table/TableContainer";
 import TablePagination from "../Table/TablePagination";
 import useAccountsList from "../../hooks/useAccountsList";
+import defaultAvatar from "../../images/profile_image.png";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import { columns } from "./columns";
@@ -26,9 +27,11 @@ function AccountsList() {
     loading,
     rowsPerPage,
     allUsersSize,
+    searchedUser,
     filterData,
     deleteUser,
     handleChangePage,
+    handleSearchedUser,
     handleChangeRowsPerPage,
   } = useAccountsList();
 
@@ -38,8 +41,10 @@ function AccountsList() {
         <Autocomplete
           className={s.autocomplete}
           options={rows}
+          searchedUser={searchedUser}
           placeholder={"Search user"}
           onChange={(e, v) => filterData(v)}
+          handleSearchedUser={handleSearchedUser}
           getOptionLabel={(row) => row.displayName || ""}
         />
         <Button className={s.addButton}>
@@ -76,7 +81,11 @@ function AccountsList() {
                   <TableBodyCell data-label={columns[0].title}>
                     {index + 1}
                   </TableBodyCell>
-                  <TableBodyCell data-label={columns[1].title}>
+                  <TableBodyCell data-label={columns[1].title} className={s.userBlock}>
+                    <div
+                      className={s.avatar}
+                      style={{ backgroundImage: `url(${row.photoURL || defaultAvatar})` }}
+                    ></div>
                     {row.displayName}
                   </TableBodyCell>
                   <TableBodyCell data-label={columns[2].title}>
@@ -98,10 +107,9 @@ function AccountsList() {
       <TablePagination
         className={s.tablePagination}
         page={page}
-        rows={rows}
         count={allUsersSize}
         rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[2, 10, 25]}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />

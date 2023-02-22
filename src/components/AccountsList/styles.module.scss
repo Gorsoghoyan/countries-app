@@ -2,7 +2,7 @@
 
 .paper {
   width: 100%;
-  margin: 20px 0 40px 0;
+  margin: 35px 0 40px 0;
   border-radius: 4px;
   background: $--app-table-bg;
 
@@ -66,6 +66,9 @@
       th {
         border-bottom: 1px solid $--app-table-border-color;
         text-align: left;
+        &:nth-child(2) {
+          display: block;
+        }
       }
   
       th,
@@ -73,16 +76,17 @@
         padding: 16px;
         white-space: nowrap;
         &:nth-child(1) {
-          min-width: 10%;
+          min-width: 100px;
         }
         &:nth-child(2) {
-          min-width: 30%;
+          min-width: 250px;
+          padding-left: 10%;
         }
         &:nth-child(3) {
-          min-width: 30%;
+          min-width: 250px;
         }
         &:nth-child(4) {
-          min-width: 30%;
+          min-width: 150px;
         }
       }
   
@@ -131,10 +135,39 @@
     color: $--app-theme2;
     background: $--app-table-top-bg;
   }
+
+  .userBlock {
+    display: flex;
+    align-items: center;
+
+    .avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  .paper {
+    .tableContainer {
+      table {
+        th,
+        td {
+          &:nth-child(2) {
+            padding-left: 0;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 600px) {
   .paper {    
+    margin: 20px 0;
+
     .tableContainer {
       overflow: visible;
       max-height: none;
@@ -175,6 +208,9 @@
         th,
         td {
           min-width: none;
+          &:nth-child(2) {
+            justify-content: flex-end;
+          }
         }
 
         td {
@@ -220,6 +256,15 @@
     
     .autocomplete {
       width: 240px;
+    }
+    
+    .userBlock {
+
+      .avatar {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+      }
     }
   }
 }

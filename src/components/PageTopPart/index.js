@@ -4,7 +4,7 @@ import s from "./styles.module.scss";
 function PageTopPart({ title, button, btnText, path }) {
   return (
     <div className={s.container}>
-      <h1>{title}</h1>
+      <h2>{title}</h2>
       {button && (
         <Link className={s.btnWrapper} to={path}>
           {btnText}

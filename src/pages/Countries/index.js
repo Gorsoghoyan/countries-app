@@ -8,11 +8,12 @@ function Countries() {
   return (
     <div className={s.countries}>
       <PageTopPart
-        title="Countries"
+        title="Countries..."
         button={true}
         btnText={"Add country"}
         path={""}
       />
+      
     </div>
   );
 }

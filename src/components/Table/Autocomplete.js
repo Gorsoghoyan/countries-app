@@ -7,10 +7,17 @@ import { AiOutlineClose } from "react-icons/ai";
 import s from "./styles.module.scss";
 import c from "classnames";
 
-function Autocomplete({ className, placeholder, options, getOptionLabel, onChange }) {
+function Autocomplete({ 
+  className, 
+  placeholder, 
+  options, 
+  getOptionLabel, 
+  onChange, 
+  handleSearchedUser, 
+  searchedUser 
+}) {
   const {
     open,
-    find,
     value,
     clickRef,
     isPending,
@@ -18,7 +25,13 @@ function Autocomplete({ className, placeholder, options, getOptionLabel, onChang
     openDropDown,
     handleChange,
     handleItemClick,
-  } = useAutoComplete(options, getOptionLabel, onChange);
+  } = useAutoComplete(
+    options,
+    getOptionLabel,
+    onChange,
+    handleSearchedUser,
+    searchedUser
+  );
 
   return (
     <div
@@ -36,7 +49,7 @@ function Autocomplete({ className, placeholder, options, getOptionLabel, onChang
       />
       <div className={s.icons}>
         <AiOutlineClose
-          className={c(s.cross, { [s.active]: find })}
+          className={c(s.cross, { [s.active]: searchedUser })}
           onClick={() => handleChange("")}
         />
         <IoMdArrowDropdown className={c(s.arrow, { [s.rotate]: open })} />
@@ -56,12 +69,12 @@ function Autocomplete({ className, placeholder, options, getOptionLabel, onChang
             <AutocompleteItem
               key={option.id}
               className={s.item}
-              background={find ? "#1976d21f" : null}
+              background={searchedUser ? "#1976d21f" : null}
               optionName={getOptionLabel(option)}
               onClick={(e) => handleItemClick(e, option)}
             />
           )
-        ))}
+          ))}
         {Boolean(!filteredOptions.length) && (
           <AutocompleteItem
             className={s.item}

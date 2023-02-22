@@ -2,9 +2,8 @@ import { useEffect, useState, useTransition } from "react";
 import useClickOutside from "./useClickOutside";
 import useScrollHandler from "./useScrollHandler";
 
-const useAutoComplete = (options, getOptionLabel, onChange) => {
+const useAutoComplete = (options, getOptionLabel, onChange, handleSearchedUser, searchedUser) => {
   const [open, setOpen] = useState(false);
-  const [find, setFind] = useState(false);
   const [value, setValue] = useState("");
   const [isPending, startTransition] = useTransition()
   const [filteredOptions, setFilteredOptions] = useState([]);
@@ -18,6 +17,12 @@ const useAutoComplete = (options, getOptionLabel, onChange) => {
     )));
   }, [value, options, getOptionLabel]);
 
+  useEffect(() => {
+    if (!searchedUser) {
+      setValue("");
+    };
+  }, [searchedUser]);
+
   function closeDropDown() {
     setOpen(false);
   }
@@ -27,9 +32,9 @@ const useAutoComplete = (options, getOptionLabel, onChange) => {
   };
 
   const handleChange = (value) => {
-    if (find && !value) {
+    if (searchedUser && !value) {
       onChange();
-      setFind(false);  
+      handleSearchedUser(false);  
     }
     startTransition(() => {
       setValue(value);
@@ -39,8 +44,8 @@ const useAutoComplete = (options, getOptionLabel, onChange) => {
   const handleItemClick = (e, option) => {
     e.stopPropagation();
     setOpen(false);
-    if (find) return;
-    setFind(true);
+    if (searchedUser) return;
+    handleSearchedUser(true);
     startTransition(() => {
       setValue(getOptionLabel(option));
     });
@@ -49,7 +54,6 @@ const useAutoComplete = (options, getOptionLabel, onChange) => {
 
   return {
     open,
-    find,
     value,
     clickRef,
     isPending,

@@ -18,11 +18,13 @@ import Swal from "sweetalert2";
 const useAccountsList = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  
+  const [searchedUser, setSearchedUser] = useState(false);
 
   const [page, setPage] = useState(1);
   const [rows, setRows] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
+  
   const [lastVisible, setLastVisible] = useState(null);
   const [firstVisible, setFirstVisible] = useState(null);
   const [allUsersSize, setAllUsersSize] = useState(null);
@@ -140,18 +142,6 @@ const useAccountsList = () => {
     }
   }
 
-  const handleChangePage = (arrow) => {
-    if (arrow === "next") {
-      getNextUsers();
-    } else {
-      getPrevUsers();
-    }
-  };
-
-  const handleChangeRowsPerPage = (newPerPage) => {
-    setRowsPerPage(newPerPage);
-  };
-
   const deleteApi = async (id) => {
     setLoading(true);
     try {
@@ -183,6 +173,27 @@ const useAccountsList = () => {
     });
   };
 
+  const handleChangePage = (arrow) => {
+    if (searchedUser) {
+      filterData();      
+      setSearchedUser(false);
+      return;
+    }
+    if (arrow === "next") {
+      getNextUsers();
+    } else {
+      getPrevUsers();
+    }
+  };
+
+  const handleChangeRowsPerPage = (newPerPage) => {
+    setRowsPerPage(newPerPage);
+  };
+
+  const handleSearchedUser = (toggle) => {
+    setSearchedUser(toggle);
+  };
+
   return {
     page,
     rows,
@@ -190,9 +201,11 @@ const useAccountsList = () => {
     loading,
     rowsPerPage,
     allUsersSize,
+    searchedUser,
     filterData,
     deleteUser,
     handleChangePage,
+    handleSearchedUser,
     handleChangeRowsPerPage,
   };
 };

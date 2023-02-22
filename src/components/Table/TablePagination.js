@@ -6,7 +6,6 @@ import s from "./styles.module.scss";
 function TablePagination({
   className,
   page,
-  rows,
   count,
   rowsPerPage,
   onPageChange,
@@ -22,15 +21,12 @@ function TablePagination({
           onRowsPerPageChange={onRowsPerPageChange}
         />
       </div>
-      <div className={s.infoPart}>
-        <p>
-          {page*rowsPerPage-rowsPerPage+1}<span>-</span>
-          {page*rowsPerPage-rowsPerPage+rowsPerPage > count 
-            ? count : 
-            page*rowsPerPage-rowsPerPage+rowsPerPage
-          }<span>of</span>{count}
-        </p>
-      </div>
+      <p className={s.infoPart}>
+        {page * rowsPerPage - rowsPerPage + 1}
+        <span>-</span>
+        {page * rowsPerPage > count ? count : page * rowsPerPage}
+        <span>of</span>{count}
+      </p>
       <div className={s.arrowsPart}>
         <Button
           onClick={(e) => onPageChange("prev")}
