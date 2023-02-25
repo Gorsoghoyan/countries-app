@@ -1,0 +1,113 @@
+@import "../../sass/variables.module.scss";
+
+.country {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  overflow: hidden;
+  &:hover {
+    .countryBg {
+      .actions {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  .countryBg {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    &:hover {
+      .bgEffect {
+        background: rgba(0, 0, 0, 0.177);
+      }
+    }
+
+    .bgEffect {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background: rgba(0, 0, 0, 0.103);
+      transition: background .3s linear;
+    }
+
+    .actions {
+      position: absolute;
+      bottom: 2px;
+      right: 5px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .2s linear;
+
+      svg {
+        z-index: 10;
+        padding: 10px;
+        margin: 0 4px;
+        font-size: 40px;
+        border-radius: 4px;
+        color: $--app-theme2;
+        background: $--app-header-bg;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .countryInfo {
+    background: $--app-country-item-footer-bg;
+    padding: 10px;
+
+    h2 {
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 13px;
+      font-weight: 400;
+      color: $--app-country-item-text-color;
+      margin-top: 2px;
+
+      span {
+        font-size: 12px;
+        margin-left: 5px;
+        font-weight: 100;
+      }
+    }
+  }
+
+  .countryId {
+    width: max-content;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    padding: 5px 10px;
+    font-weight: 600;
+    color: $--app-theme2;
+    background: $--app-country-item-id-bg;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 806px) {
+  .country {
+    .countryInfo {
+      h2 {
+        font-size: 25px;
+      }
+
+      p {
+        font-size: 15px;
+        span {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .countryBg {
+      height: 240px;
+    }
+  }
+}

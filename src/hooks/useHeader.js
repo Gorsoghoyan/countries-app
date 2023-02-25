@@ -1,23 +1,39 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { changeValue, selectInput } from "../redux/slices/search/searchInputSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { 
-  selectSideBarOpen, 
-  toggleSideBar 
+import {
+  selectSideBarOpen,
+  toggleSideBar
 } from "../redux/slices/sideBar/sideBarSlice";
 import useClickOutside from "./useClickOutside";
 import useUserContext from "./useUserContext";
 
 const useHeader = () => {
   const [open, setOpen] = useState(false);
+
   const { logoutUser } = useUserContext();
+  const { location, placeholder, value } = useSelector(selectInput);
   const sideBarOpen = useSelector(selectSideBarOpen);
+  const inputRef = useRef(null);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    inputRef.current.value = value;
+  }, [value]);
 
   const clickRef = useClickOutside(() => {
     closeDropDown();
   });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!location) return;
+    if (!inputRef.current.value) return;
+    dispatch(changeValue(inputRef.current.value));
+  };
 
   function closeDropDown() {
     open && setOpen(false);
@@ -43,11 +59,14 @@ const useHeader = () => {
   return {
     open,
     clickRef,
-    handleToggleSideBar,
+    inputRef,
+    placeholder,
+    handleClick,
+    handleSubmit,
+    closeDropDown,
     navigateHomePage,
     handleUserLogout,
-    closeDropDown,
-    handleClick,
+    handleToggleSideBar,
   };
 };
 

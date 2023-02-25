@@ -109,7 +109,7 @@ function AccountsList() {
         page={page}
         count={allUsersSize}
         rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={[2, 10, 25]}
+        rowsPerPageOptions={[5, 10, 25]}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />

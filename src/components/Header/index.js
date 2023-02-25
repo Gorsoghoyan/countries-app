@@ -14,12 +14,15 @@ function Header() {
   const {
     open,
     clickRef,
+    inputRef,
     sideBarOpen,
-    handleToggleSideBar,
+    placeholder,
+    handleClick,
+    handleSubmit,
+    closeDropDown,
     navigateHomePage,
     handleUserLogout,
-    closeDropDown,
-    handleClick,
+    handleToggleSideBar,
   } = useHeader();
 
   return (
@@ -37,12 +40,13 @@ function Header() {
         />
       </div>
       <div className={s.rightPart}>
-        <form className={s.searchBlock}>
+        <form className={s.searchBlock} onSubmit={handleSubmit}>
           <Input
+            ref={inputRef}
             type="search"
             attr={{
               type: "text",
-              placeholder: "Search...",
+              placeholder: placeholder || "Search..."
             }}
           />
           <Button className={s.iconBlock}>

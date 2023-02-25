@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense, Fragment } from "react";
-import Toastify from "./components/Toastify";
 import Loading from "./components/Loading";
-import GoTopArrow from "./components/GoTopArrow";
+import Toastify from "./components/Toastify";
 import PublicRoute from "./routes/PublicRoute";
 import RequireAuth from "./routes/RequireAuth";
 import PrivateRoute from "./routes/PrivateRoute"; 
+import GoTopArrow from "./components/GoTopArrow";
 import LayoutRoute from "./routes/LayoutRoute/LayoutRoute";
 
 const Auth = lazy(() => import("./pages/Auth"));
@@ -15,6 +15,7 @@ const Password = lazy(() => import("./pages/Password"));
 const Accounts = lazy(() => import("./pages/Accounts"));
 const Countries = lazy(() => import("./pages/Countries"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
+const AddAndEdit = lazy(() => import("./pages/AddAndEdit"));
 
 export function App() {
   return (
@@ -28,6 +29,10 @@ export function App() {
               <Route path="admin/countries" element={<Countries />} />
               <Route path="admin/accounts" element={<Accounts />} />
               <Route path="admin/profile" element={<Profile />} />
+              <Route path="add/user" element={<AddAndEdit />} />
+              <Route path="add/country" element={<AddAndEdit />} />
+              <Route path="edit/:userId" element={<AddAndEdit />} />
+              <Route path="edit/:countryId" element={<AddAndEdit />} />
             </Route>
           </Route>
           <Route path="" element={<PublicRoute />}>
