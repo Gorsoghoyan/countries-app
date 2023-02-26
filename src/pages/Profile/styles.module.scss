@@ -26,24 +26,6 @@
         font-weight: 600;
         margin-bottom: 10px;
       }
-
-      .fileUpload {
-        padding: 5px 6px;
-        color: $--bs-btn-color;
-        background: $--bs-btn-bg;
-        border: none;
-        outline: none;
-        border-radius: 2px;
-        font-size: 12px;
-        cursor: pointer;
-        &:hover {
-          background: $--bs-btn-hover-bg;
-        }
-
-        input {
-          display: none;
-        }
-      }
     }
 
     img {

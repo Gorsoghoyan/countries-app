@@ -14,6 +14,7 @@ function Countries() {
     seeMore,
     countries,
     btnLoading,
+    handleEditCountry,
     deleteCountry,
     getMoreCountries
   } = useCountries();
@@ -24,7 +25,9 @@ function Countries() {
         title="Countries..."
         button={true}
         btnText={"Add country"}
-        path={""}
+        path={"/add/country"}
+        btnBackground={"rgb(45 53 60)"}
+        btnBorder={"none"}
       />
       {loading ? (
         <ComponentLoading className={s.loading} />
@@ -52,6 +55,7 @@ function Countries() {
                     : "Has no capital city"
                   }
                   deleteCountry={deleteCountry}
+                  editCountry={handleEditCountry}
                 />
               ))
             )}

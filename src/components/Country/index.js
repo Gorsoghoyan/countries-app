@@ -12,6 +12,7 @@ function Country({
   capital,
   population,
   deleteCountry,
+  editCountry,
 }) {
 
   return (
@@ -28,7 +29,7 @@ function Country({
         <div className={s.bgEffect}></div>
         <div className={s.actions}>
           <BiSelectMultiple />
-          <MdEdit />
+          <MdEdit onClick={() => editCountry(id)} />
           <AiFillDelete onClick={() => deleteCountry(id)} />
         </div>
       </div>

@@ -1,18 +1,16 @@
 import {
-  confirmPasswordReset,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-  signOut,
-  updateProfile,
+  confirmPasswordReset, createUserWithEmailAndPassword,
+  sendPasswordResetEmail, signInWithEmailAndPassword,
+  signOut, updateProfile,
 } from "firebase/auth";
+import { ref,  uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { userLogin, userLogout } from "../../redux/slices/user/userSlice";
 import { createContext, useState } from "react";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { auth, fs } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { auth, fs, storage } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { userLogin, userLogout } from "../../redux/slices/user/userSlice";
 
 export const UserContext = createContext({});
 
@@ -93,6 +91,7 @@ const UserContextProvider = ({ children }) => {
     }
   };
 
+  // Reset password
   const resetPassword = async (oobCode, newPassword) => {
     setLoading(true);
     try {
@@ -106,24 +105,35 @@ const UserContextProvider = ({ children }) => {
     }
   };
 
-  // Add sub user
-  const addSubUser = async (data) => {
-    setLoading(true);
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      await setDoc(doc(fs, "subUsers", userCredential.user.uid), {
-        ...data,
-      });
-      setError("");
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      setError(error.message);
-    }
+  // Upload file
+  const uploadFile = ({ file, setPerc, setError, setPhotoURL }) => {
+
+    const name = new Date().getTime() + file.name;
+    const storageRef = ref(storage, name);
+
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on('state_changed', 
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setPerc(progress);
+        switch (snapshot.state) {
+          case 'paused':
+            break;
+          case 'running':
+            break;
+          default : break;
+        }
+      }, 
+      (error) => {
+        setError(error);
+      }, 
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setPhotoURL(downloadURL);
+        });
+      }
+    );
   };
 
   return (
@@ -132,7 +142,7 @@ const UserContextProvider = ({ children }) => {
         error,
         loading,
         reset,
-        addSubUser,
+        uploadFile,
         loginUser,
         registerUser,
         logoutUser,

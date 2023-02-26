@@ -12,8 +12,13 @@ function FormInput({
   return (
     <div className={s.wrapper}>
       <Input
-        type="formInput"
-        attr={{ type, onChange, id, name, autoFocus, required: true }}
+        attr={{ 
+          type, 
+          onChange, 
+          id, 
+          name, 
+          autoFocus, 
+          required: true }}
       />
       <label htmlFor={id}>
         {plc}

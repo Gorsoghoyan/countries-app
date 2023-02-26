@@ -1,17 +1,10 @@
 import { 
-  doc, 
-  limit, 
-  query, 
-  startAt, 
-  getDocs, 
-  orderBy, 
-  deleteDoc, 
-  endBefore, 
-  collection, 
-  startAfter,
-  limitToLast, 
+  doc, limit, query, startAt, 
+  getDocs, orderBy, deleteDoc, endBefore, 
+  collection, startAfter, limitToLast
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fs } from "../firebase";
 import Swal from "sweetalert2";
 
@@ -29,6 +22,7 @@ const useAccountsList = () => {
   const [firstVisible, setFirstVisible] = useState(null);
   const [allUsersSize, setAllUsersSize] = useState(null);
   const subUsersCollection = collection(fs, "subUsers");
+  const navigate = useNavigate();
 
   useEffect(() => {
     getUsers();
@@ -194,6 +188,14 @@ const useAccountsList = () => {
     setSearchedUser(toggle);
   };
 
+  const handleNavigate = (id) => {
+    if (id === "add") {
+      navigate("/add/user");
+    } else {
+      navigate(`/edit/user/${id}`);
+    }
+  };
+
   return {
     page,
     rows,
@@ -204,6 +206,7 @@ const useAccountsList = () => {
     searchedUser,
     filterData,
     deleteUser,
+    handleNavigate,
     handleChangePage,
     handleSearchedUser,
     handleChangeRowsPerPage,

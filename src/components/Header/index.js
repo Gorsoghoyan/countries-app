@@ -43,7 +43,6 @@ function Header() {
         <form className={s.searchBlock} onSubmit={handleSubmit}>
           <Input
             ref={inputRef}
-            type="search"
             attr={{
               type: "text",
               placeholder: placeholder || "Search..."

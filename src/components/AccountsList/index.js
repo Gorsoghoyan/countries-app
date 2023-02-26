@@ -30,6 +30,7 @@ function AccountsList() {
     searchedUser,
     filterData,
     deleteUser,
+    handleNavigate,
     handleChangePage,
     handleSearchedUser,
     handleChangeRowsPerPage,
@@ -47,7 +48,10 @@ function AccountsList() {
           handleSearchedUser={handleSearchedUser}
           getOptionLabel={(row) => row.displayName || ""}
         />
-        <Button className={s.addButton}>
+        <Button 
+          onClick={() => handleNavigate("add")} 
+          className={s.addButton}
+        >
           <AiOutlinePlus />Add
         </Button>
       </Stack>
@@ -81,10 +85,18 @@ function AccountsList() {
                   <TableBodyCell data-label={columns[0].title}>
                     {index + 1}
                   </TableBodyCell>
-                  <TableBodyCell data-label={columns[1].title} className={s.userBlock}>
+                  <TableBodyCell 
+                    data-label={columns[1].title} 
+                    className={s.userBlock}
+                  >
                     <div
                       className={s.avatar}
-                      style={{ backgroundImage: `url(${row.photoURL || defaultAvatar})` }}
+                      style={{ 
+                        backgroundImage: `url(${row.photoURL || defaultAvatar})`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        backgroundSize: "cover"
+                      }}
                     ></div>
                     {row.displayName}
                   </TableBodyCell>
@@ -93,7 +105,7 @@ function AccountsList() {
                   </TableBodyCell>
                   <TableBodyCell data-label={columns[3].title}>
                     <Stack className={s.actions}>
-                      <MdModeEditOutline />
+                      <MdModeEditOutline onClick={() => handleNavigate(row.id)} />
                       <MdDelete onClick={() => deleteUser(row.id)} />
                     </Stack>
                   </TableBodyCell>

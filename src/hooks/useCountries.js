@@ -1,23 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { fs } from "../firebase";
 import Swal from "sweetalert2";
 import { 
-  collection, 
-  getDocs, 
-  orderBy, 
-  query, 
-  limit, 
-  startAfter, 
-  deleteDoc, 
-  doc,
-  where
+  collection, getDocs, orderBy, query, 
+  limit, startAfter, deleteDoc, doc, where
 } from "firebase/firestore";
 import { 
-  selectInput, 
-  setLocation, 
-  changePlaceholder, 
-  changeValue
+  selectInput, setLocation, changePlaceholder, changeValue
 } from "../redux/slices/search/searchInputSlice";
 
 const useCountries = () => {
@@ -34,6 +25,7 @@ const useCountries = () => {
   const { value } = useSelector(selectInput);
   const countriesRef = collection(fs, "countries");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getCountries();
@@ -162,12 +154,17 @@ const useCountries = () => {
     });
   };
 
+  const handleEditCountry = (id) => {
+    navigate(`/edit/country/${id}`);
+  };
+
   return {
     error,
     loading,
     seeMore,
     countries,
     btnLoading,
+    handleEditCountry,
     deleteCountry,
     getMoreCountries
   };

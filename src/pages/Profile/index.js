@@ -1,5 +1,6 @@
-import Input from "../../customs/Input";
+import FileUploadButton from "../../components/FileUploadButton";
 import useProfile from "../../hooks/useProfile";
+import profilePhoto from "../../images/profile_image.png";
 import s from "./styles.module.scss";
 
 function Profile() {
@@ -9,18 +10,14 @@ function Profile() {
     <div className={s.profile}>
       <div className={s.topContainer}>
         <div className={s.bg}>
-          <img src={photoURL} alt="avatar" />
+          <img src={photoURL || profilePhoto} alt="avatar" />
           <div className={s.textBlock}>
             <h2>{currentUser?.displayName}</h2>
-            <label className={s.fileUpload} style={null}>
-              <Input
-                attr={{
-                  type: "file",
-                  onChange: handleFileChange,
-                }}
-              />
+            <FileUploadButton 
+              handleFileChange={handleFileChange}
+            >
               Edit Photo
-            </label>
+            </FileUploadButton>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import Loading from "./components/Loading";
 import Toastify from "./components/Toastify";
 import PublicRoute from "./routes/PublicRoute";
 import RequireAuth from "./routes/RequireAuth";
-import PrivateRoute from "./routes/PrivateRoute"; 
+import PrivateRoute from "./routes/PrivateRoute";
 import GoTopArrow from "./components/GoTopArrow";
 import LayoutRoute from "./routes/LayoutRoute/LayoutRoute";
 
@@ -20,7 +20,7 @@ const AddAndEdit = lazy(() => import("./pages/AddAndEdit"));
 export function App() {
   return (
     <Fragment>
-      <Suspense fallback={<Loading />}> 
+      <Suspense fallback={<Loading />}>
         <Routes>
           <Route index path="/" element={<RequireAuth />} />
           <Route path="" element={<PrivateRoute />}>
@@ -29,10 +29,13 @@ export function App() {
               <Route path="admin/countries" element={<Countries />} />
               <Route path="admin/accounts" element={<Accounts />} />
               <Route path="admin/profile" element={<Profile />} />
-              <Route path="add/user" element={<AddAndEdit />} />
-              <Route path="add/country" element={<AddAndEdit />} />
-              <Route path="edit/:userId" element={<AddAndEdit />} />
-              <Route path="edit/:countryId" element={<AddAndEdit />} />
+              <Route path="add/user" element={<AddAndEdit type="addUser" />} />
+              <Route path="add/country" element={<AddAndEdit type="addCountry" />} />
+              <Route path="edit/user/:userId" element={<AddAndEdit type="editUser" />} />
+              <Route 
+                path="edit/country/:countryId" 
+                element={<AddAndEdit type="editCountry" />} 
+              />
             </Route>
           </Route>
           <Route path="" element={<PublicRoute />}>

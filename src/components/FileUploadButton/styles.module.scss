@@ -1,0 +1,19 @@
+@import "../../sass/variables.module.scss";
+
+.fileUpload {
+  padding: 5px 6px;
+  color: $--bs-btn-color;
+  background: $--bs-btn-bg;
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  font-size: 12px;
+  cursor: pointer;
+  &:hover {
+    background: $--bs-btn-hover-bg;
+  }
+
+  input {
+    display: none;
+  }
+}

@@ -1,0 +1,117 @@
+@import "../../sass/variables.module.scss";
+
+.container {
+  padding: 20px 30px;
+
+  .loading {
+    margin: 23% auto 0 auto;
+  }
+
+  hr {
+    border: none;
+    border-bottom: 1px solid #495057;
+    margin-top: 20px;
+  }
+
+  .formWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    margin: 60px 0 40px 0;
+    padding-right: 50px;
+    
+    .imageUploadWrapper {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 40px;
+      
+
+      .image {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 20px;
+      }
+
+      .fileUpload {
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #e3f0ea;
+        background: #007070;
+        font-size: 15px;
+
+        svg {
+          font-size: 18px;
+          margin-left: 5px;
+          color: #e3f0ea;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .inputsWrapper {
+      display: grid;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      label {
+        width: 100%;
+        color: #d2e2db;
+        font-size: 13px;
+      }
+
+      input {
+        width: 100%;
+        padding: 13px;
+        margin: 5px 0;
+        margin-bottom: 25px;
+        border-radius: 4px;
+        outline: none;
+        border: none;
+        background: transparent;
+        color: white;
+        font-size: 14px;
+        border: 1px solid #495057;
+      }
+    }
+
+    button {
+      width: 150px;
+      margin: 10px auto 0 auto;
+      padding: 10px;
+      display: block;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+      font-size: 14px;
+      color: #e3f0ea;
+      background: #007575;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      &:disabled {
+        background: red;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1153px) {
+  .container {
+    .formWrapper {
+      grid-template-columns: 1fr;
+      padding-right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    padding: 20px 15px;
+  }
+}

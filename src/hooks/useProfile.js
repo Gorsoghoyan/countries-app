@@ -1,19 +1,30 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { selectCurrentUser } from "../redux/slices/user/userSlice";
-import profilePhoto from "../images/profile_image.png";
+import useUserContext from "./useUserContext";
+import { updateProfile } from "firebase/auth";
 
 const useProfile = () => {
-  const [file, setFile] = useState("");
-  const [photoURL, setPhotoURL] = useState(profilePhoto);
+  const [photoURL, setPhotoURL] = useState("");
+  const [error, setError] = useState("");
+  const [perc, setPerc] = useState(null);
+
   const currentUser = useSelector(selectCurrentUser);
+  const { uploadFile } = useUserContext();
 
   useEffect(() => {
     currentUser?.photoURL && setPhotoURL(currentUser.photoURL);
   }, [currentUser]);
 
-  const handleFileChange = (e) => {
-    e.target.files[0] && setFile(e.target.files[0]);
+  const handleFileChange = (file) => {
+    if (file) {
+      // uploadFile({
+      //   file, 
+      //   setPhotoURL,
+      //   setPerc,
+      //   setError
+      // })
+    }
   };
 
   return {
