@@ -48,10 +48,9 @@ function AccountsList() {
           handleSearchedUser={handleSearchedUser}
           getOptionLabel={(row) => row.displayName || ""}
         />
-        <Button 
-          onClick={() => handleNavigate("add")} 
-          className={s.addButton}
-        >
+        <Button
+          onClick={() => handleNavigate("add")}
+          className={s.addButton}>
           <AiOutlinePlus />Add
         </Button>
       </Stack>
@@ -64,7 +63,15 @@ function AccountsList() {
           <ErrorMessage
             error={error}
             color={"#ffffff7e"}
-            fontSize={20}
+            fontSize={25}
+          />
+        </Stack>
+      ) : !rows.length ? (
+        <Stack className={s.flex}>
+          <ErrorMessage
+            error={"There are currently no users"}
+            color={"#ffffff7e"}
+            fontSize={25}
           />
         </Stack>
       ) : (
@@ -85,13 +92,13 @@ function AccountsList() {
                   <TableBodyCell data-label={columns[0].title}>
                     {index + 1}
                   </TableBodyCell>
-                  <TableBodyCell 
-                    data-label={columns[1].title} 
+                  <TableBodyCell
+                    data-label={columns[1].title}
                     className={s.userBlock}
                   >
                     <div
                       className={s.avatar}
-                      style={{ 
+                      style={{
                         backgroundImage: `url(${row.photoURL || defaultAvatar})`,
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center",

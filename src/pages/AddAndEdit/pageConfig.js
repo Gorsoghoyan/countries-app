@@ -1,8 +1,13 @@
 import defaultPhoto from "../../images/profile_image.png";
-import earthPhoto from "../../images/earth-11530975450jod29w76lc.png";
+import earthPhoto from "../../images/earth-map.png";
 
 export const addCountry = {     
-  pageTopTitle: "Add new country...",
+  pageTopTitle: "Add new country",
+  btnText: "Add country",
+  defaultPhoto: earthPhoto,
+  imageWidth: 350,
+  imageHeight: 200,
+  imageRadius: 4,
   inputs: [
     { id: "input_12asd", type: "text", special: "countryName", placeholder: "Enter country name", name: "name", label: "Country name", autoFocus: true },
     { id: "input_12sjd", type: "text", placeholder: "Enter capital name", name: "capital", label: "Capital name" },
@@ -16,12 +21,15 @@ export const addCountry = {
     capital: "",
     population: "",
   },
-  btnText: "Add country",
-  defaultPhoto: earthPhoto
 };
 
 export const editCountry = {     
-  pageTopTitle: "Edit country...",
+  pageTopTitle: "Edit country",
+  btnText: "Update country",
+  defaultPhoto: earthPhoto,
+  imageWidth: 330,
+  imageHeight: 200,
+  imageRadius: 4,
   inputs: [
     { id: "input_12asd", type: "text", special: "countryName", placeholder: "Enter country name", name: "name", label: "Country name", autoFocus: true },
     { id: "input_12sjd", type: "text", placeholder: "Enter capital name", name: "capital", label: "Capital name" },
@@ -35,13 +43,15 @@ export const editCountry = {
     capital: "",
     population: "",
   },
-  btnText: "Update country",
-  defaultPhoto: earthPhoto
 };
 
 export const addUser = {
-  pageTopTitle: "Add new user...",
+  pageTopTitle: "Add new user",
   defaultPhoto, 
+  btnText: "Add user",
+  imageWidth: 150,
+  imageHeight: 150,
+  imageRadius: "50%",
   inputs: [
     { id: "input_1212", type: "text", placeholder: "Enter username", name: "displayName", label: "Username", autoFocus: true },
     { id: "input_1we23", type: "email", placeholder: "Enter email address", name: "email", label: "Email address" },
@@ -53,12 +63,21 @@ export const addUser = {
     password: "",
     photoURL: "",
   },
-  btnText: "Add user"
+  permissions: [
+    {title: "You want your user to be able to add a new country?", name: "addCountry"},
+    {title: "You want your user to be able to add a new country?", name: "editCountry"},
+    {title: "You want your user to be able to add a new country?", name: "deleteCountry"},
+    {title: "You want your user to be able to add a new country?", name: "selectCountry"},
+  ]
 };
 
 export const editUser = {
-  pageTopTitle: "Edit user...",
+  pageTopTitle: "Edit user",
   defaultPhoto, 
+  btnText: "Update user",
+  imageWidth: 150,
+  imageHeight: 150,
+  imageRadius: "50%",
   inputs: [
     { id: "input_1212", type: "text", placeholder: "Enter username", name: "displayName", label: "Username", autoFocus: true },
     { id: "input_1we23", type: "email", placeholder: "Enter email address", name: "email", label: "Email address" },
@@ -70,5 +89,4 @@ export const editUser = {
     password: "",
     photoURL: "",
   },
-  btnText: "Update user"
 };

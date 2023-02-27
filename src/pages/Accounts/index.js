@@ -13,7 +13,7 @@ function Accounts() {
 
   return (
     <div className={s.accounts}>
-      <PageTopPart title="Accounts..." />
+      <PageTopPart title="Accounts" />
       <AccountsList />
     </div>
   );

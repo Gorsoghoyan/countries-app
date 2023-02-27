@@ -22,12 +22,13 @@ function Countries() {
   return (
     <div className={s.countries}>
       <PageTopPart
-        title="Countries..."
+        title="Countries"
         button={true}
         btnText={"Add country"}
         path={"/add/country"}
         btnBackground={"rgb(45 53 60)"}
         btnBorder={"none"}
+        btnPadding={"7px 20px "}
       />
       {loading ? (
         <ComponentLoading className={s.loading} />

@@ -14,7 +14,7 @@ import {
 const useCountries = () => {
   const [lastVisible, setLastVisible] = useState();
   const [countries, setCountries] = useState([]);
-  const [dataLimit, setDataLimit] = useState(50);
+  const [dataLimit, setDataLimit] = useState(100);
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -57,7 +57,7 @@ const useCountries = () => {
 
       setLastVisible(lastVisibleCountry);
       setCountries(countries);
-      setDataLimit(70);
+      setDataLimit(120);
 
       setError("");
       setLoading(false);

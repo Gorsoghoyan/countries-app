@@ -33,11 +33,18 @@ function AddAndEdit({ type }) {
       ) : (
         <section className={s.formWrapper}>
           <div className={s.imageUploadWrapper}>
-            <ImageDiv className={s.image} bgImage={
-              photoURL || data.photoURL || 
-              data.flags?.png || target.defaultPhoto
-            } />
-            <FileUploadButton 
+            <ImageDiv 
+              loading={perc !== null && perc < 100}
+              width={target.imageWidth}
+              height={target.imageHeight}
+              borderRadius={target.imageRadius}
+              margin={"0 0 25px 0"}
+              bgImage={
+                photoURL || data.photoURL ||
+                data.flags?.png || target.defaultPhoto
+              } 
+            />
+            <FileUploadButton
               className={s.fileUpload}
               handleFileChange={handleFileChange}
             >

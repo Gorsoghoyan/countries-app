@@ -22,6 +22,7 @@ const useAddAndEdit = (type) => {
   const [perc, setPerc] = useState(null);
   const [loading, setLoading] = useState(false);
   const [btnLoading, setBtnLoading] = useState(false);
+  const [imageLoading, setImageLoading] = useState(false); 
 
   const { userId, countryId } = useParams();
   const { uploadFile } = useUserContext();
